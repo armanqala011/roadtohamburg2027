@@ -7,7 +7,7 @@
 <title>Road to Hamburg 2027</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&subset=cyrillic&display=swap">
 <style>
 /* Layout: a single race-bib column; timing-board numbers, one season chart as the centrepiece */
 :root{
@@ -73,12 +73,12 @@ a{color:var(--accent)}
 /* Chart */
 .chart-box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 8px 8px}
 .chart-scroll{overflow-x:auto}
-#chart{display:block;min-width:720px;width:100%;height:auto}
-#chart text{fill:var(--muted);font-family:var(--mono);font-size:10px}
-#chart .grid{stroke:var(--line);stroke-width:1}
-#chart .ev text{fill:var(--fg);font-weight:600}
-#chart .ev line{stroke:var(--fg);stroke-dasharray:3 3}
-#chart .phase-label{fill:var(--fg);font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.js-chart{display:block;min-width:720px;width:100%;height:auto}
+.js-chart text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+.js-chart .grid{stroke:var(--line);stroke-width:1}
+.js-chart .ev text{fill:var(--fg);font-weight:600}
+.js-chart .ev line{stroke:var(--fg);stroke-dasharray:3 3}
+.js-chart .phase-label{fill:var(--fg);font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
 .legend{display:flex;flex-wrap:wrap;gap:16px;padding:8px 12px 4px;font-size:.85rem;color:var(--muted)}
 .legend span{display:flex;align-items:center;gap:6px}
 .tip{min-height:3.2em;padding:6px 12px 6px;font-size:.92rem}
@@ -136,7 +136,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   .stats{grid-template-columns:1fr}
   .stat{border-left:none;border-top:1px solid var(--line)}
 }
-@media (prefers-reduced-motion:no-preference){ #chart rect.bar{transition:opacity .15s} }
+@media (prefers-reduced-motion:no-preference){ .js-chart rect.bar{transition:opacity .15s} }
 
 /* Menu */
 [hidden]{display:none!important}
@@ -155,12 +155,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pager a.next{margin-left:auto;text-align:right}
 .pager .lbl{font-family:var(--display);font-weight:700;font-size:1.3rem;text-transform:uppercase}
 @media (max-width:760px){.tabs{flex-direction:column;align-items:stretch;gap:0}.tabs .brand{padding-top:10px}.tablist a{padding:10px 10px 9px}}
+.wrap.off{display:none}
+.langs{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;flex:none}
+.langs button{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;background:transparent;color:var(--muted);border:0;padding:6px 10px;cursor:pointer}
+.langs button+button{border-left:1px solid var(--line)}
+.langs button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.langs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:12px}
+@media (min-width:761px){.topline{display:contents}.langs{order:3}}
+@media (max-width:760px){.topline{padding-top:8px}.tabs .brand{padding-top:0}}
 </style>
 </head>
 <body>
-
 <nav class="tabs" aria-label="Sections">
-  <a class="brand" href="#overview">Road to Hamburg</a>
+  <div class="topline">
+    <a class="brand" href="#overview">Road to Hamburg</a>
+    <div class="langs" role="group" aria-label="Language / Язык"><button type="button" id="lang-en" data-setlang="en" aria-pressed="true">EN</button><button type="button" id="lang-ru" data-setlang="ru" aria-pressed="false">RU</button></div>
+  </div>
   <div class="tablist">
     <a href="#overview" data-tab="overview">Overview</a>
     <a href="#season" data-tab="season">Season</a>
@@ -170,7 +181,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <a href="#race" data-tab="race">Race days</a>
   </div>
 </nav>
-<div class="wrap">
+<div class="wrap" data-lang="en" lang="en">
 
 <header data-view="overview" class="hero">
   <div class="meta">
@@ -180,7 +191,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
   <div class="bib" aria-label="Countdown to race day">
     <div class="eyebrow" style="text-align:center">IRONMAN Hamburg · Sun 6 June 2027</div>
-    <div class="big num" id="days" style="text-align:center">—</div>
+    <div class="big num js-days" style="text-align:center">—</div>
     <div class="eyebrow" style="text-align:center">days to go</div>
     <div class="row"><span>3.8 km swim</span><span>180 km bike</span><span>42.2 km run</span></div>
   </div>
@@ -198,39 +209,39 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <p class="lede">The run is where the time is. Your 1:38 half marathon predicts a 3:45–3:55 Ironman marathon; Vietnam's 4:53 was heat, bike pacing and fuelling, which is the most fixable kind of gap.</p>
 </section>
 
-<section data-view="overview" aria-labelledby="now-h">
-  <div class="sec-head"><div class="eyebrow">This week</div><h2 id="now-h">Where you are now</h2></div>
+<section data-view="overview">
+  <div class="sec-head"><div class="eyebrow">This week</div><h2>Where you are now</h2></div>
   <div class="now">
-    <div class="wk"><small>PLAN WEEK</small><span id="nowWk">—</span><small id="nowOf" style="margin-top:6px">of 33</small></div>
+    <div class="wk"><small>PLAN WEEK</small><span class="js-nowWk">—</span><small style="margin-top:6px">of 33</small></div>
     <div class="now-body">
-      <h3 id="nowPhase">—</h3>
-      <p id="nowFocus">—</p>
-      <div class="chips" id="nowChips"></div>
-      <p class="lede" id="nowNote"></p>
+      <h3 class="js-nowPhase">—</h3>
+      <p class="js-nowFocus">—</p>
+      <div class="chips js-nowChips"></div>
+      <p class="lede js-nowNote"></p>
     </div>
   </div>
 </section>
 
-<section data-view="season" aria-labelledby="season-h">
-  <div class="sec-head"><div class="eyebrow">33 weeks · planned hours</div><h2 id="season-h">The season</h2>
+<section data-view="season">
+  <div class="sec-head"><div class="eyebrow">33 weeks · planned hours</div><h2>The season</h2>
   <p class="lede">Weekly training hours split by sport. Run volume climbs through winter, then the bike takes over after the half marathon. Tap or hover a week for its focus.</p></div>
   <div class="chart-box">
-    <div class="chart-scroll"><svg id="chart" viewBox="0 0 900 330" role="img" aria-label="Stacked bar chart of weekly training hours by sport across 33 weeks"></svg></div>
+    <div class="chart-scroll"><svg class="js-chart" viewBox="0 0 900 330" role="img" aria-label="Stacked bar chart of weekly training hours by sport across 33 weeks"></svg></div>
     <div class="legend">
       <span><i class="dot" style="background:var(--swim)"></i>Swim</span>
       <span><i class="dot" style="background:var(--bike)"></i>Bike</span>
       <span><i class="dot" style="background:var(--run)"></i>Run</span>
       <span><i class="dot" style="background:var(--other)"></i>Strength</span>
     </div>
-    <div class="tip" id="tip" aria-live="polite"></div>
+    <div class="tip js-tip" aria-live="polite"></div>
   </div>
 </section>
 
-<section data-view="season" aria-labelledby="phases-h">
-  <div class="sec-head"><div class="eyebrow">Seven phases</div><h2 id="phases-h">Phases</h2></div>
+<section data-view="season">
+  <div class="sec-head"><div class="eyebrow">Seven phases</div><h2>Phases</h2></div>
   <div class="tbl"><table>
     <thead><tr><th>Weeks</th><th>Dates</th><th>Phase</th><th>Goal</th></tr></thead>
-    <tbody id="phaseBody">
+    <tbody class="js-phaseBody">
       <tr data-from="1" data-to="1"><td class="n">1</td><td class="n">19–25 Oct</td><td>Return</td><td>Easy return after five quiet months</td></tr>
       <tr data-from="2" data-to="18"><td class="n">2–18</td><td class="n">26 Oct – 21 Feb</td><td>Run block</td><td>Run 30 → 58 km/week, half marathon mid-Feb; bike ticking over indoors, swim from mid-Nov</td></tr>
       <tr data-from="19" data-to="19"><td class="n">19</td><td class="n">22–28 Feb</td><td>Bike/tri transition</td><td>Bike volume back up, first bricks</td></tr>
@@ -242,8 +253,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </table></div>
 </section>
 
-<section data-view="season" aria-labelledby="cp-h">
-  <div class="sec-head"><div class="eyebrow">Miss one and we adjust the target, not force it</div><h2 id="cp-h">Checkpoints</h2></div>
+<section data-view="season">
+  <div class="sec-head"><div class="eyebrow">Miss one and we adjust the target, not force it</div><h2>Checkpoints</h2></div>
   <div class="cps">
     <div class="cp"><div class="when">WK 3–4 · EARLY NOV</div><div class="what">First tests</div><div class="target">30-min run test + 20-min FTP. Sets zones and the baseline. Moved to week 4 after the cold.</div></div>
     <div class="cp"><div class="when">WK 5 · 16 NOV</div><div class="what">Pool reopens</div><div class="target">Swim CSS test: 400 m and 200 m all-out.</div></div>
@@ -257,8 +268,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </section>
 
-<section data-view="run" aria-labelledby="run-h">
-  <div class="sec-head"><div class="eyebrow">26 Oct 2026 – mid-Feb 2027</div><h2 id="run-h">Run block</h2>
+<section data-view="run">
+  <div class="sec-head"><div class="eyebrow">26 Oct 2026 – mid-Feb 2027</div><h2>Run block</h2>
   <p class="lede">Your call: running first until the half marathon. Volume rises about 10% a week with a lighter week every fourth.</p></div>
   <div class="tbl"><table>
     <thead><tr><th>Weeks</th><th>Dates</th><th>Run km/wk</th><th>Long run</th><th>Quality</th></tr></thead>
@@ -290,8 +301,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </section>
 
-<section data-view="week" aria-labelledby="week-h">
-  <div class="sec-head"><div class="eyebrow">Built around Mon–Fri 8:00–19:00, Sat 8:00–13:00</div><h2 id="week-h">A typical week</h2>
+<section data-view="week">
+  <div class="sec-head"><div class="eyebrow">Built around Mon–Fri 8:00–19:00, Sat 8:00–13:00</div><h2>A typical week</h2>
   <p class="lede">Run-block version from week 5, once the pool reopens. Long run Saturday, long ride Sunday, so the hardest running stays away from the biggest ride.</p></div>
   <div class="days">
     <div class="day rest"><div class="d">Mon</div><div>Rest</div></div>
@@ -316,8 +327,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </section>
 
-<section data-view="body" aria-labelledby="body-h">
-  <div class="sec-head"><div class="eyebrow">Power and body weight</div><h2 id="body-h">Engine and weight</h2></div>
+<section data-view="body">
+  <div class="sec-head"><div class="eyebrow">Power and body weight</div><h2>Engine and weight</h2></div>
   <div class="tbl"><table>
     <thead><tr><th></th><th>Now (Oct 2026)</th><th>Doha · 20 Mar</th><th>Hamburg · 6 Jun</th></tr></thead>
     <tbody>
@@ -337,8 +348,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </section>
 
-<section data-view="body" aria-labelledby="zones-h">
-  <div class="sec-head"><div class="eyebrow">Set from the tests</div><h2 id="zones-h">Zones</h2></div>
+<section data-view="body">
+  <div class="sec-head"><div class="eyebrow">Set from the tests</div><h2>Zones</h2></div>
   <div class="tbl"><table>
     <thead><tr><th>Zone</th><th>HR (% LTHR)</th><th>Power (% FTP)</th><th>Feel</th></tr></thead>
     <tbody>
@@ -352,8 +363,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <p class="lede">Tests: run LTHR = average HR of the last 20 min of a 30-min solo time trial. FTP = 95% of a 20-min all-out. Swim CSS = (T400 − T200) ÷ 2 per 100 m.</p>
 </section>
 
-<section data-view="race" aria-labelledby="race-h">
-  <div class="sec-head"><div class="eyebrow">Lessons from Vietnam</div><h2 id="race-h">Race days</h2></div>
+<section data-view="race">
+  <div class="sec-head"><div class="eyebrow">Lessons from Vietnam</div><h2>Race days</h2></div>
   <div class="cols">
     <div><h3>70.3 Doha · Sat 20 Mar</h3><ul>
       <li>Target sub-4:50: swim 0:34, bike 2:30, run 1:40, 6 min transitions.</li>
@@ -371,132 +382,373 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </section>
 
-<div class="pager" id="pager"></div>
+<div class="pager js-pager"></div>
 <footer>Plan version 5, 14 Oct 2026, with the week 3 tests moved after the early-November cold. Training data from TrainingPeaks (Feb 2025 – Oct 2026) and weekly logs.</footer>
+</div>
+
+<div class="wrap off" data-lang="ru" lang="ru">
+
+<header data-view="overview" class="hero">
+  <div class="meta">
+    <div class="eyebrow">Арман Кала · план на 33 недели · v5</div>
+    <h1>Путь в <span>Гамбург</span> 2027</h1>
+    <p class="lede">От 11:54 во Вьетнаме к Ironman быстрее 10:30. До февраля упор на бег, потом подготовка ко всей гонке. Каждая тренировка вписана в 60-часовую рабочую неделю в Шымкенте.</p>
+  </div>
+  <div class="bib" aria-label="Обратный отсчёт до старта">
+    <div class="eyebrow" style="text-align:center">IRONMAN Гамбург · вс, 6 июня 2027</div>
+    <div class="big num js-days" style="text-align:center">—</div>
+    <div class="eyebrow" style="text-align:center">дней до старта</div>
+    <div class="row"><span>3,8 км плавание</span><span>180 км велосипед</span><span>42,2 км бег</span></div>
+  </div>
+</header>
+
+<section data-view="overview">
+  <div class="sec-head"><div class="eyebrow">Целевые сплиты против Вьетнама (10 мая 2026)</div></div>
+  <div class="splits">
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--swim)"></i>Плавание</div><div class="t">1:12</div><div class="was">было 1:22 · ~1:54/100 м</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--bike)"></i>Велосипед</div><div class="t">5:10</div><div class="was">было 5:31 · ~34,8 км/ч</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--run)"></i>Бег</div><div class="t">3:58</div><div class="was">было 4:53 · ~5:39/км</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--other)"></i>T1 + T2</div><div class="t">0:07</div><div class="was">было ~0:08</div></div>
+    <div class="split total"><div class="leg">Финиш</div><div class="t">10:27</div><div class="was">было 11:54 · на 87 мин быстрее</div></div>
+  </div>
+  <p class="lede">Главный резерв времени в беге. Твой полумарафон за 1:38 обещает марафон на Ironman за 3:45–3:55. 4:53 во Вьетнаме объясняются жарой, темпом на велосипеде и питанием, а такой разрыв исправить легче всего.</p>
+</section>
+
+<section data-view="overview">
+  <div class="sec-head"><div class="eyebrow">Эта неделя</div><h2>Где ты сейчас</h2></div>
+  <div class="now">
+    <div class="wk"><small>НЕДЕЛЯ ПЛАНА</small><span class="js-nowWk">—</span><small style="margin-top:6px">из 33</small></div>
+    <div class="now-body">
+      <h3 class="js-nowPhase">—</h3>
+      <p class="js-nowFocus">—</p>
+      <div class="chips js-nowChips"></div>
+      <p class="lede js-nowNote"></p>
+    </div>
+  </div>
+</section>
+
+<section data-view="season">
+  <div class="sec-head"><div class="eyebrow">33 недели · плановые часы</div><h2>Сезон</h2>
+  <p class="lede">Часы тренировок в неделю по видам спорта. Зимой растёт беговой объём, после полумарафона главным становится велосипед. Нажми на неделю или наведи на неё, чтобы увидеть задачу.</p></div>
+  <div class="chart-box">
+    <div class="chart-scroll"><svg class="js-chart" viewBox="0 0 900 330" role="img" aria-label="Диаграмма недельных часов по видам спорта за 33 недели"></svg></div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--swim)"></i>Плавание</span>
+      <span><i class="dot" style="background:var(--bike)"></i>Велосипед</span>
+      <span><i class="dot" style="background:var(--run)"></i>Бег</span>
+      <span><i class="dot" style="background:var(--other)"></i>Силовая</span>
+    </div>
+    <div class="tip js-tip" aria-live="polite"></div>
+  </div>
+</section>
+
+<section data-view="season">
+  <div class="sec-head"><div class="eyebrow">Семь этапов</div><h2>Этапы</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Недели</th><th>Даты</th><th>Этап</th><th>Цель</th></tr></thead>
+    <tbody class="js-phaseBody">
+      <tr data-from="1" data-to="1"><td class="n">1</td><td class="n">19–25 окт</td><td>Возвращение</td><td>Лёгкое возвращение после пяти спокойных месяцев</td></tr>
+      <tr data-from="2" data-to="18"><td class="n">2–18</td><td class="n">26 окт – 21 фев</td><td>Беговой блок</td><td>Бег 30 → 58 км/нед, полумарафон в середине февраля; велосипед на станке для поддержания, плавание с середины ноября</td></tr>
+      <tr data-from="19" data-to="19"><td class="n">19</td><td class="n">22–28 фев</td><td>Переход к велосипеду и триатлону</td><td>Возвращаем велообъём, первые связки</td></tr>
+      <tr data-from="20" data-to="23"><td class="n">20–23</td><td class="n">1–28 мар</td><td>Блок Дохи</td><td>Заточка, подводка, старт 70.3 Доха, восстановление</td></tr>
+      <tr data-from="24" data-to="28"><td class="n">24–28</td><td class="n">29 мар – 2 мая</td><td>Развитие</td><td>Специфичные связки, бег в темпе IM после велосипеда, отработка питания</td></tr>
+      <tr data-from="29" data-to="31"><td class="n">29–31</td><td class="n">3–23 мая</td><td>Пик</td><td>Самые объёмные недели (15,5 ч), открытая вода, репетиция гонки</td></tr>
+      <tr data-from="32" data-to="33"><td class="n">32–33</td><td class="n">24 мая – 6 июня</td><td>Подводка</td><td>Сбросить усталость, сохранить остроту, стартовать</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section data-view="season">
+  <div class="sec-head"><div class="eyebrow">Если не попадаем, меняем цель, а не ломимся силой</div><h2>Контрольные точки</h2></div>
+  <div class="cps">
+    <div class="cp"><div class="when">НЕД 3–4 · НАЧАЛО НОЯБРЯ</div><div class="what">Первые тесты</div><div class="target">Беговой тест 30 мин + FTP-тест 20 мин. Задают зоны и точку отсчёта. Перенесены на 4-ю неделю из-за простуды.</div></div>
+    <div class="cp"><div class="when">НЕД 5 · 16 НОЯБРЯ</div><div class="what">Снова бассейн</div><div class="target">Тест CSS: 400 м и 200 м в полную силу.</div></div>
+    <div class="cp"><div class="when">НЕД 13 · СЕРЕДИНА ЯНВАРЯ</div><div class="what">Повторный тест</div><div class="target">Пороговый беговой темп быстрее ~4:50/км.</div></div>
+    <div class="cp race"><div class="when">НЕД 18 · СЕРЕДИНА ФЕВРАЛЯ</div><div class="what">Полумарафон</div><div class="target">Цель 1:30 (4:16/км). В графике, если быстрее 1:35. Лучший результат пока 1:38.</div></div>
+    <div class="cp race"><div class="when">НЕД 22 · СБ, 20 МАРТА</div><div class="what">IRONMAN 70.3 Доха</div><div class="target">Быстрее 4:50, бег быстрее 1:40.</div></div>
+    <div class="cp"><div class="when">НЕД 24 · КОНЕЦ МАРТА</div><div class="what">Повторный FTP-тест</div><div class="target">FTP на 8–10% выше первого теста, вес около 68 кг.</div></div>
+    <div class="cp"><div class="when">НЕД 27 · КОНЕЦ АПРЕЛЯ</div><div class="what">Длинная связка</div><div class="target">5:00 велосипед на мощности IM + 50 мин бега по 5:35/км.</div></div>
+    <div class="cp"><div class="when">НЕД 30 · СЕРЕДИНА МАЯ</div><div class="what">Длинная связка</div><div class="target">5:30 велосипед на мощности IM + 30 мин бега по 5:40/км под контролем.</div></div>
+    <div class="cp race"><div class="when">НЕД 33 · ВС, 6 ИЮНЯ</div><div class="what">IRONMAN Гамбург</div><div class="target">Быстрее 10:30.</div></div>
+  </div>
+</section>
+
+<section data-view="run">
+  <div class="sec-head"><div class="eyebrow">26 окт 2026 – середина фев 2027</div><h2>Беговой блок</h2>
+  <p class="lede">Твой выбор: до полумарафона главное бег. Объём растёт примерно на 10% в неделю, каждая четвёртая неделя облегчённая.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Недели</th><th>Даты</th><th>Бег км/нед</th><th>Длительная</th><th>Интенсивные</th></tr></thead>
+    <tbody>
+      <tr><td class="n">2–4</td><td class="n">26 окт – 15 ноя</td><td class="n">30 → 37</td><td class="n">1:10 → 1:20</td><td>Только ускорения и беговой тест</td></tr>
+      <tr><td class="n">5–7</td><td class="n">16 ноя – 6 дек</td><td class="n">41 → 47</td><td class="n">1:25 → 1:35</td><td>1 в неделю (порог)</td></tr>
+      <tr><td class="n">8</td><td class="n">7–13 дек</td><td class="n">35</td><td class="n">1:15</td><td><span class="tag">восстановление</span></td></tr>
+      <tr><td class="n">9–11</td><td class="n">14 дек – 3 янв</td><td class="n">48 → 51, 45</td><td class="n">до 1:45</td><td>2 в неделю (порог + темп ПМ)</td></tr>
+      <tr><td class="n">12</td><td class="n">4–10 янв</td><td class="n">38</td><td class="n">1:20</td><td><span class="tag">восстановление</span></td></tr>
+      <tr><td class="n">13–15</td><td class="n">11–31 янв</td><td class="n">52 → 58</td><td class="n">1:50 → 2:00</td><td>2 в неделю</td></tr>
+      <tr><td class="n">16</td><td class="n">1–7 фев</td><td class="n">44</td><td class="n">1:30</td><td><span class="tag">восстановление</span></td></tr>
+      <tr><td class="n">17–18</td><td class="n">8–21 фев</td><td class="n">52, неделя старта</td><td class="n">старт</td><td>Полумарафон</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cols">
+    <div><h3>Правила</h3><ul>
+      <li>Около 80% бега остаётся лёгким: пульс не выше 145, пока тест не задаст зоны.</li>
+      <li>Тяжёлый бег только в указанные дни. До 16 ноября никаких интервалов, кроме теста.</li>
+      <li>Не пропускай субботнюю длительную. Это самая важная пробежка для полумарафона.</li>
+      <li>Силовая дважды в неделю по 20 мин: подъёмы на носки, приседания на одной ноге, выпады, ягодичный мост, кор.</li>
+      <li>Боль, которая меняет технику бега или усиливается наутро: 2–3 дня без бега, вместо него велосипед, и напиши мне.</li>
+    </ul></div>
+    <div><h3>Зима в Шымкенте</h3><ul>
+      <li>Все заезды на станке примерно до марта. Час на станке стоит около 1,2 часа на улице: вместо указанных 1:45 крути 1:30.</li>
+      <li>Заезды в зоне 2 (65–75% FTP), с 9-й недели добавляй отрезки по 5–10 мин на 80–85%.</li>
+      <li>Бегай на улице до −10 °C в слоях одежды. В гололёд и для интенсивных тренировок дорожка с уклоном 1%.</li>
+      <li>На станке мощный вентилятор и 750 мл–1 л воды в час.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section data-view="week">
+  <div class="sec-head"><div class="eyebrow">Под график пн–пт 8:00–19:00, сб 8:00–13:00</div><h2>Типичная неделя</h2>
+  <p class="lede">Вариант бегового блока с 5-й недели, когда откроется бассейн. Длительная пробежка в субботу, длинный заезд в воскресенье, чтобы самый тяжёлый бег не совпадал с самым большим заездом.</p></div>
+  <div class="days">
+    <div class="day rest"><div class="d">Пн</div><div>Отдых</div></div>
+    <div class="day"><div class="d">Вт</div><div class="s run">5:30 интенсивный бег, 60–75 мин</div><div class="s">Силовая 20 мин</div></div>
+    <div class="day"><div class="d">Ср</div><div class="s swim">7:00 плавание, 45 мин</div><div class="s bike">По желанию станок 45–60 мин</div></div>
+    <div class="day"><div class="d">Чт</div><div class="s run">5:30 лёгкий бег</div></div>
+    <div class="day"><div class="d">Пт</div><div class="s run">6:00 лёгкий бег + ускорения</div><div class="s swim">7:00 плавание, 45 мин</div></div>
+    <div class="day"><div class="d">Сб</div><div class="s run">14:30 длительная, Z2</div><div class="s">Силовая 20 мин</div></div>
+    <div class="day"><div class="d">Вс</div><div class="s bike">Длинный заезд, зимой на станке</div><div class="s run">15–20 мин бега после велосипеда</div></div>
+  </div>
+  <div class="cols">
+    <div><h3>Сон и работа</h3><ul>
+      <li>С подъёмом в 5:00 ложись в 21:30–22:00. Спал меньше 6 часов, пропускай утреннюю тренировку.</li>
+      <li>Тяжёлый день на объекте тоже нагрузка. Следующее утро сделай лёгким или пропусти.</li>
+      <li>Вечером после 19:00 только короткие лёгкие тренировки, никаких интервалов.</li>
+    </ul></div>
+    <div><h3>Авральные недели</h3><ul>
+      <li>Оставь три тренировки: субботнюю длительную, воскресный заезд и одно плавание (около 6 часов).</li>
+      <li>Остальное отменяй без чувства вины и не навёрстывай пропущенное.</li>
+      <li>Если знаешь, что аврал впереди, скажи мне, и я поменяю его местами с восстановительной неделей.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section data-view="body">
+  <div class="sec-head"><div class="eyebrow">Мощность и вес</div><h2>Мотор и вес</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Сейчас (окт 2026)</th><th>Доха · 20 мар</th><th>Гамбург · 6 июня</th></tr></thead>
+    <tbody>
+      <tr><td>FTP</td><td class="n">тест = точка отсчёта</td><td class="n">~205 Вт</td><td class="n">215–220 Вт</td></tr>
+      <tr><td>Мощность на гонке</td><td class="n">—</td><td class="n">80–83% FTP</td><td class="n">155–160 Вт (70–75%)</td></tr>
+      <tr><td>Вес</td><td class="n">72–73 кг</td><td class="n">~68 кг</td><td class="n">65 кг</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cols">
+    <div><p>У тебя отличная аэропосадка (CdA около 0,23 м²: 33 км/ч на 128 Вт во Вьетнаме), поэтому работа на велосипеде сводится к росту FTP. Минус 5 кг дают примерно 15–20 минут на марафоне при той же форме.</p></div>
+    <div><ul>
+      <li>Худей на 0,25–0,5 кг в неделю, дефицит только в дни отдыха и лёгких тренировок.</li>
+      <li>Вокруг длинных и тяжёлых тренировок ешь полноценно. Белок 120–140 г в день.</li>
+      <li>Первым делом убери калорийные напитки и поздние перекусы.</li>
+      <li>За три недели до Гамбурга прекрати дефицит. Сильный при 66 кг лучше уставшего при 65.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section data-view="body">
+  <div class="sec-head"><div class="eyebrow">Задаются по тестам</div><h2>Зоны</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Зона</th><th>Пульс (% ЛТЧСС)</th><th>Мощность (% FTP)</th><th>Ощущения</th></tr></thead>
+    <tbody>
+      <tr><td>Z1 восстановление</td><td class="n">&lt; 81%</td><td class="n">&lt; 55%</td><td>Очень легко</td></tr>
+      <tr><td>Z2 аэробная</td><td class="n">81–89%</td><td class="n">56–75%</td><td>Говоришь полными фразами</td></tr>
+      <tr><td>Z3 темп / усилие IM</td><td class="n">90–93%</td><td class="n">76–90%</td><td>По несколько слов</td></tr>
+      <tr><td>Z4 порог</td><td class="n">94–100%</td><td class="n">91–105%</td><td>Тяжело, 20–60 мин</td></tr>
+      <tr><td>Z5 МПК</td><td class="n">&gt; 100%</td><td class="n">&gt; 105%</td><td>Очень тяжело, короткие интервалы</td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede">Тесты: беговой ЛТЧСС = средний пульс последних 20 мин 30-минутной прикидки в одиночку. FTP = 95% мощности 20 мин в полную силу. CSS в плавании = (T400 − T200) ÷ 2 на 100 м.</p>
+</section>
+
+<section data-view="race">
+  <div class="sec-head"><div class="eyebrow">Уроки Вьетнама</div><h2>Дни гонок</h2></div>
+  <div class="cols">
+    <div><h3>70.3 Доха · сб, 20 мар</h3><ul>
+      <li>Цель быстрее 4:50: плавание 0:34, велосипед 2:30, бег 1:40, транзиты 6 мин.</li>
+      <li>Жара твоё слабое место. С 6 марта 5–8 тепловых сессий: станок без вентилятора или ванна 40 °C после лёгкого бега.</li>
+      <li>Измерь потоотделение этой зимой: взвесься до и после часового заезда без вентилятора.</li>
+      <li>Выше 25 °C: мощность на 5% ниже, первые 5 км бега на 10–15 с/км медленнее. Лёд и вода на каждом пункте питания.</li>
+      <li>Возьми выходные с четверга 18 по понедельник 22 марта.</li>
+    </ul></div>
+    <div><h3>Гамбург · вс, 6 июня</h3><ul>
+      <li>Держи темп на велосипеде по мощности, не выше ~75% FTP. Отдать 5 минут на велосипеде, чтобы выиграть 20+ на беге, и есть наш размен.</li>
+      <li>70–90 г углеводов в час на велосипеде, отрабатываем на каждом длинном заезде с 21-й недели.</li>
+      <li>Первые 10 км бега в целевом темпе или чуть медленнее.</li>
+      <li>В начале июня в Гамбурге обычно 18–23 °C. Твоя погода.</li>
+    </ul></div>
+  </div>
+</section>
+
+<div class="pager js-pager"></div>
+<footer>План, версия 5 от 14 окт 2026, тесты 3-й недели перенесены из-за простуды в начале ноября. Данные из TrainingPeaks (фев 2025 – окт 2026) и недельных отчётов.</footer>
 </div>
 
 <script>
 (function(){
+  // [week, monday (Y,M0,D), phase key, total h, swim, bike, run, long ride, long run, focus EN, focus RU]
   var W=[
-  [1,"19 Oct 2026","Return",5.25,0.75,1.5,2.25,"1:30","0:50","Run focus month: 4 easy runs, HR at or below 145, 1 easy ride, 1 technique swim"],
-  [2,"26 Oct 2026","Run block",5.25,0,1.75,3.0,"1:45","1:10","30 km run. Easy only + strides; no swim (pool from mid-Nov)"],
-  [3,"02 Nov 2026","Run block",5.75,0,2.0,3.25,"2:00","1:15","34 km run. Tests moved to week 4 after the cold; easy running while you recover"],
-  [4,"09 Nov 2026","Run block",6.25,0,2.0,3.75,"2:00","1:20","37 km run. Easy + strides; hill strides Thu. Tests: 30-min run Tue, 20-min FTP in Sun ride"],
-  [5,"16 Nov 2026","Run block",8.5,1.5,2.5,4.0,"2:00","1:25","41 km run. Pool restarts (CSS test Wed). Run quality: 5x5 min threshold"],
-  [6,"23 Nov 2026","Run block",8.75,1.5,2.5,4.25,"2:00","1:30","44 km run. Run: 6x4 min threshold"],
-  [7,"30 Nov 2026","Run block",9.0,1.5,2.5,4.5,"2:15","1:35","47 km run. Run: 3x10 min tempo"],
-  [8,"07 Dec 2026","Run block (recovery)",7.25,1.25,2.0,3.5,"1:45","1:15","35 km run. Recovery week (easy only)"],
-  [9,"14 Dec 2026","Run block",9.25,1.5,2.5,4.75,"2:15","1:40","48 km run. Two quality runs: threshold Tue, HM-pace finish in long run"],
-  [10,"21 Dec 2026","Run block",9.5,1.5,2.5,5.0,"2:30","1:45","51 km run. 5x1 km at 4:15-4:20 + long run with 20 min at HM pace"],
-  [11,"28 Dec 2026","Run block",8.0,1.0,2.0,4.5,"2:00","1:30","45 km run. New Year week: keep it simple"],
-  [12,"04 Jan 2027","Run block (recovery)",7.5,1.25,2.0,3.75,"2:00","1:20","38 km run. Recovery week"],
-  [13,"11 Jan 2027","Run block",9.5,1.5,2.5,5.0,"2:30","1:50","52 km run. Retest 30-min run + FTP; set HM race pace"],
-  [14,"18 Jan 2027","Run block",10.0,1.5,2.5,5.5,"2:30","1:55","55 km run. 3x3 km at HM pace; long run with 2x15 min at HM pace"],
-  [15,"25 Jan 2027","Run block",10.75,1.5,3.0,5.75,"2:45","2:00","58 km run. Peak run week: 6x1 km + long run 2:00, last 30 min at HM pace"],
-  [16,"01 Feb 2027","Run block (recovery)",8.75,1.5,2.5,4.25,"2:15","1:30","44 km run. Recovery week"],
-  [17,"08 Feb 2027","Run block",9.5,1.5,2.5,5.0,"2:30","1:45","52 km run. Last HM-specific week: 2x5 km at HM pace in long run"],
-  [18,"15 Feb 2027","Run block (race)",7.5,1.25,2.0,3.75,"1:30","0:40","Half marathon (goal 1:30): easy Sat, race Sun"],
-  [19,"22 Feb 2027","Bike/tri transition",12.0,2.25,5.25,4.0,"4:00","2:05","Bike volume back up, first bricks. Swim 4x800 steady"],
-  [20,"01 Mar 2027","Doha block",12.0,2.25,5.25,4.0,"4:00","2:00","Last big week before Doha: 70.3-pace blocks on bike and run"],
-  [21,"08 Mar 2027","Doha taper",9.5,1.75,4.0,3.25,"3:00","1:30","Volume down, short 70.3-pace efforts, heat prep"],
-  [22,"15 Mar 2027","Doha race",7.0,1.25,3.5,2.25,"1:00","0:40","IRONMAN 70.3 Doha, Saturday 20 March (target sub-4:50)"],
-  [23,"22 Mar 2027","Recovery",6.5,1.25,2.5,2.25,"2:00","1:00","Easy only until Thursday, then normal easy sessions"],
-  [24,"29 Mar 2027","Build",12.5,2.25,5.75,4.0,"4:15","2:10","Build resumes, retest FTP"],
-  [25,"05 Apr 2027","Build",13.75,2.5,6.25,4.5,"5:00","2:25","Long ride with 3x30 min IM effort"],
-  [26,"12 Apr 2027","Build",14.25,2.5,6.5,4.75,"5:15","2:30","Brick: 4:00 ride + 50 min run at IM pace"],
-  [27,"19 Apr 2027","Build",14.75,2.75,6.75,4.75,"5:30","2:30","Full nutrition rehearsal on long ride"],
-  [28,"26 Apr 2027","Build (recovery)",9.0,1.5,4.0,3.0,"2:45","1:20","Recovery week"],
-  [29,"03 May 2027","Peak",15.0,2.75,7.0,5.0,"5:30","2:30","Swim 3800 continuous, open water"],
-  [30,"10 May 2027","Peak",15.5,2.75,7.5,5.0,"5:30","2:30","Biggest week: last 2h of Sunday ride at IM effort + 30 min run"],
-  [31,"17 May 2027","Peak",13.75,2.5,6.5,4.5,"5:00","2:20","Last big weekend"],
-  [32,"24 May 2027","Taper",9.5,1.75,4.5,3.25,"3:00","1:30","Volume down 35%, keep short race-pace efforts"],
-  [33,"31 May 2027","Taper",5.75,1.0,2.75,2.0,"1:00","0:30","Race week: openers only. Race Sunday 6 June"]
+  [1,[2026,9,19],"ret",5.25,0.75,1.5,2.25,"1:30","0:50","Run focus month: 4 easy runs, HR at or below 145, 1 easy ride, 1 technique swim","Месяц бега: 4 лёгкие пробежки с пульсом до 145, 1 лёгкий заезд, 1 техническое плавание"],
+  [2,[2026,9,26],"run",5.25,0,1.75,3.0,"1:45","1:10","30 km run. Easy only + strides; no swim (pool from mid-Nov)","30 км бега. Только легко + ускорения; без плавания (бассейн с середины ноября)"],
+  [3,[2026,10,2],"run",5.75,0,2.0,3.25,"2:00","1:15","34 km run. Tests moved to week 4 after the cold; easy running while you recover","34 км бега. Тесты перенесены на 4-ю неделю из-за простуды; пока восстанавливаешься, только лёгкий бег"],
+  [4,[2026,10,9],"run",6.25,0,2.0,3.75,"2:00","1:20","37 km run. Easy + strides; hill strides Thu. Tests: 30-min run Tue, 20-min FTP in Sun ride","37 км бега. Легко + ускорения; в чт ускорения в горку. Тесты: бег 30 мин во вт, FTP 20 мин в воскресном заезде"],
+  [5,[2026,10,16],"run",8.5,1.5,2.5,4.0,"2:00","1:25","41 km run. Pool restarts (CSS test Wed). Run quality: 5x5 min threshold","41 км бега. Снова бассейн (тест CSS в ср). Интенсивный бег: 5×5 мин на пороге"],
+  [6,[2026,10,23],"run",8.75,1.5,2.5,4.25,"2:00","1:30","44 km run. Run: 6x4 min threshold","44 км бега. Бег: 6×4 мин на пороге"],
+  [7,[2026,10,30],"run",9.0,1.5,2.5,4.5,"2:15","1:35","47 km run. Run: 3x10 min tempo","47 км бега. Бег: 3×10 мин в темпе"],
+  [8,[2026,11,7],"runr",7.25,1.25,2.0,3.5,"1:45","1:15","35 km run. Recovery week (easy only)","35 км бега. Восстановительная неделя (только легко)"],
+  [9,[2026,11,14],"run",9.25,1.5,2.5,4.75,"2:15","1:40","48 km run. Two quality runs: threshold Tue, HM-pace finish in long run","48 км бега. Две интенсивные: порог во вт, финиш длительной в темпе ПМ"],
+  [10,[2026,11,21],"run",9.5,1.5,2.5,5.0,"2:30","1:45","51 km run. 5x1 km at 4:15-4:20 + long run with 20 min at HM pace","51 км бега. 5×1 км по 4:15–4:20 + длительная с 20 мин в темпе ПМ"],
+  [11,[2026,11,28],"run",8.0,1.0,2.0,4.5,"2:00","1:30","45 km run. New Year week: keep it simple","45 км бега. Новогодняя неделя: всё просто"],
+  [12,[2027,0,4],"runr",7.5,1.25,2.0,3.75,"2:00","1:20","38 km run. Recovery week","38 км бега. Восстановительная неделя"],
+  [13,[2027,0,11],"run",9.5,1.5,2.5,5.0,"2:30","1:50","52 km run. Retest 30-min run + FTP; set HM race pace","52 км бега. Повторные тесты: бег 30 мин + FTP; определяем темп на ПМ"],
+  [14,[2027,0,18],"run",10.0,1.5,2.5,5.5,"2:30","1:55","55 km run. 3x3 km at HM pace; long run with 2x15 min at HM pace","55 км бега. 3×3 км в темпе ПМ; длительная с 2×15 мин в темпе ПМ"],
+  [15,[2027,0,25],"run",10.75,1.5,3.0,5.75,"2:45","2:00","58 km run. Peak run week: 6x1 km + long run 2:00, last 30 min at HM pace","58 км бега. Пик бегового объёма: 6×1 км + длительная 2:00, последние 30 мин в темпе ПМ"],
+  [16,[2027,1,1],"runr",8.75,1.5,2.5,4.25,"2:15","1:30","44 km run. Recovery week","44 км бега. Восстановительная неделя"],
+  [17,[2027,1,8],"run",9.5,1.5,2.5,5.0,"2:30","1:45","52 km run. Last HM-specific week: 2x5 km at HM pace in long run","52 км бега. Последняя специфичная неделя: 2×5 км в темпе ПМ в длительной"],
+  [18,[2027,1,15],"runrace",7.5,1.25,2.0,3.75,"1:30","0:40","Half marathon (goal 1:30): easy Sat, race Sun","Полумарафон (цель 1:30): в сб легко, в вс старт"],
+  [19,[2027,1,22],"trans",12.0,2.25,5.25,4.0,"4:00","2:05","Bike volume back up, first bricks. Swim 4x800 steady","Возвращаем велообъём, первые связки. Плавание 4×800 ровно"],
+  [20,[2027,2,1],"doha",12.0,2.25,5.25,4.0,"4:00","2:00","Last big week before Doha: 70.3-pace blocks on bike and run","Последняя большая неделя перед Дохой: отрезки в темпе 70.3 на велосипеде и беге"],
+  [21,[2027,2,8],"dohat",9.5,1.75,4.0,3.25,"3:00","1:30","Volume down, short 70.3-pace efforts, heat prep","Объём ниже, короткие отрезки в темпе 70.3, тепловая адаптация"],
+  [22,[2027,2,15],"dohar",7.0,1.25,3.5,2.25,"1:00","0:40","IRONMAN 70.3 Doha, Saturday 20 March (target sub-4:50)","IRONMAN 70.3 Доха, суббота 20 марта (цель быстрее 4:50)"],
+  [23,[2027,2,22],"rec",6.5,1.25,2.5,2.25,"2:00","1:00","Easy only until Thursday, then normal easy sessions","До четверга только легко, потом обычные лёгкие тренировки"],
+  [24,[2027,2,29],"build",12.5,2.25,5.75,4.0,"4:15","2:10","Build resumes, retest FTP","Возобновляем развитие, повторный FTP-тест"],
+  [25,[2027,3,5],"build",13.75,2.5,6.25,4.5,"5:00","2:25","Long ride with 3x30 min IM effort","Длинный заезд с 3×30 мин на усилии IM"],
+  [26,[2027,3,12],"build",14.25,2.5,6.5,4.75,"5:15","2:30","Brick: 4:00 ride + 50 min run at IM pace","Связка: 4:00 велосипед + 50 мин бега в темпе IM"],
+  [27,[2027,3,19],"build",14.75,2.75,6.75,4.75,"5:30","2:30","Full nutrition rehearsal on long ride","Полная репетиция питания на длинном заезде"],
+  [28,[2027,3,26],"buildr",9.0,1.5,4.0,3.0,"2:45","1:20","Recovery week","Восстановительная неделя"],
+  [29,[2027,4,3],"peak",15.0,2.75,7.0,5.0,"5:30","2:30","Swim 3800 continuous, open water","Плавание 3800 без остановки, открытая вода"],
+  [30,[2027,4,10],"peak",15.5,2.75,7.5,5.0,"5:30","2:30","Biggest week: last 2h of Sunday ride at IM effort + 30 min run","Самая большая неделя: последние 2 ч воскресного заезда на усилии IM + 30 мин бега"],
+  [31,[2027,4,17],"peak",13.75,2.5,6.5,4.5,"5:00","2:20","Last big weekend","Последние большие выходные"],
+  [32,[2027,4,24],"taper",9.5,1.75,4.5,3.25,"3:00","1:30","Volume down 35%, keep short race-pace efforts","Объём на 35% ниже, короткие отрезки в соревновательном темпе"],
+  [33,[2027,4,31],"taper",5.75,1.0,2.75,2.0,"1:00","0:30","Race week: openers only. Race Sunday 6 June","Неделя старта: только активация. Старт в воскресенье, 6 июня"]
   ];
-  var DAY=864e5, start=Date.UTC(2026,9,19), race=Date.UTC(2027,5,6);
-  var now=new Date(), today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());
-  var days=Math.round((race-today)/DAY);
-  document.getElementById('days').textContent = days>0 ? days : (days===0 ? 'Race day' : 'Done');
+  var T={
+    en:{ph:{ret:"Return",run:"Run block",runr:"Run block (recovery)",runrace:"Run block (race)",trans:"Bike/tri transition",doha:"Doha block",dohat:"Doha taper",dohar:"Doha race",rec:"Recovery",build:"Build",buildr:"Build (recovery)",peak:"Peak",taper:"Taper"},
+      months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      weekOf:"week of",week:"Week",h:"h",total:"Total",run:"Run",bike:"Bike",swim:"Swim",none:"none",lrun:"Long run",lride:"Long ride",
+      race:"Race day",done:"Done",raceDone:"Race done",finished:"The plan has finished. Time to recover and pick the next goal.",
+      cold:"You caught a cold over 31 Oct – 1 Nov, so the tests move to week 4 or until you feel fully recovered.",
+      bands:["Ret","Run block","","Doha","Build","Peak","Taper"],events:["Half","Doha 70.3","Hamburg"],now:"now",
+      ariaWeek:function(w,h,f){return "Week "+w+", "+h+" hours. "+f;},
+      tabs:{overview:"Overview",season:"Season",run:"Run block",week:"Week",body:"Power & weight",race:"Race days"},
+      prev:"← Previous",next:"Next →",nav:"Sections",title:"Road to Hamburg 2027",brand:"Road to Hamburg"},
+    ru:{ph:{ret:"Возвращение",run:"Беговой блок",runr:"Беговой блок (восстановление)",runrace:"Беговой блок (старт)",trans:"Переход к триатлону",doha:"Блок Дохи",dohat:"Подводка к Дохе",dohar:"Старт в Дохе",rec:"Восстановление",build:"Развитие",buildr:"Развитие (восстановление)",peak:"Пик",taper:"Подводка"},
+      months:["янв","фев","мар","апр","мая","июня","июля","авг","сен","окт","ноя","дек"],
+      weekOf:"неделя с",week:"Неделя",h:"ч",total:"Всего",run:"Бег",bike:"Велосипед",swim:"Плавание",none:"нет",lrun:"Длительная",lride:"Длинный заезд",
+      race:"День старта",done:"Финиш",raceDone:"Гонка позади",finished:"План завершён. Время восстановиться и выбрать новую цель.",
+      cold:"Ты простудился 31 окт – 1 ноя, поэтому тесты переносятся на 4-ю неделю или до полного восстановления.",
+      bands:["Возвр","Беговой блок","","Доха","Развитие","Пик","Подв"],events:["ПМ","Доха 70.3","Гамбург"],now:"сейчас",
+      ariaWeek:function(w,h,f){return "Неделя "+w+", "+h+" ч. "+f;},
+      tabs:{overview:"Обзор",season:"Сезон",run:"Беговой блок",week:"Неделя",body:"Мощность и вес",race:"Гонки"},
+      prev:"← Назад",next:"Далее →",nav:"Разделы",title:"Путь в Гамбург 2027",brand:"Путь в Гамбург"}
+  };
+  var DAY=864e5, start=Date.UTC(2026,9,19), raceD=Date.UTC(2027,5,6);
+  var nowD=new Date(), today=Date.UTC(nowD.getFullYear(),nowD.getMonth(),nowD.getDate());
+  var days=Math.round((raceD-today)/DAY);
   var cur=Math.floor((today-start)/DAY/7)+1;
-  var inPlan = cur>=1 && cur<=33;
-
+  var inPlan=cur>=1&&cur<=33;
   function fmtH(h){var m=Math.round(h*60);return Math.floor(m/60)+':'+String(m%60).padStart(2,'0');}
-  function setNow(w){
-    document.getElementById('nowWk').textContent=w[0];
-    document.getElementById('nowPhase').textContent=w[2]+' · week of '+w[1];
-    document.getElementById('nowFocus').textContent=w[9];
-    var c=document.getElementById('nowChips'); c.innerHTML='';
-    [['Total',fmtH(w[3])],['Run',fmtH(w[6])],['Bike',fmtH(w[5])],['Swim',w[4]?fmtH(w[4]):'none'],['Long run',w[8]],['Long ride',w[7]]].forEach(function(p){
-      var s=document.createElement('span');s.className='chip';s.textContent=p[0]+' '+p[1];c.appendChild(s);});
-  }
-  if(inPlan){ setNow(W[cur-1]);
-    if(cur===3) document.getElementById('nowNote').textContent='You caught a cold over 31 Oct – 1 Nov, so the tests move to week 4 or until you feel fully recovered.';
-  } else if(cur<1){ setNow(W[0]); } else {
-    document.getElementById('nowWk').textContent='✓';
-    document.getElementById('nowPhase').textContent='Race done';
-    document.getElementById('nowFocus').textContent='The plan has finished. Time to recover and pick the next goal.';
-  }
-  document.querySelectorAll('#phaseBody tr').forEach(function(r){
-    var a=+r.dataset.from,b=+r.dataset.to;
-    if(inPlan && cur>b) r.classList.add('past');
-    if(inPlan && cur>=a && cur<=b) r.classList.add('cur');
-  });
+  function dstr(d,t){return d[2]+' '+t.months[d[1]]+' '+d[0];}
 
-  // Chart
-  var svg=document.getElementById('chart'), NS='http://www.w3.org/2000/svg';
-  var L=34,R=8,T=34,B=56,Wd=900,H=330, pw=Wd-L-R, ph=H-T-B, max=16, n=W.length, slot=pw/n, bw=slot*0.68;
-  function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
-  function y(v){return T+ph-v/max*ph;}
-  [0,4,8,12,16].forEach(function(v){el('line',{x1:L,x2:Wd-R,y1:y(v),y2:y(v),'class':'grid'});var t=el('text',{x:L-6,y:y(v)+3,'text-anchor':'end'});t.textContent=v+'h';});
-  // phase bands
-  var phases=[[1,1,'Ret'],[2,18,'Run block'],[19,19,''],[20,23,'Doha'],[24,28,'Build'],[29,31,'Peak'],[32,33,'Taper']];
-  phases.forEach(function(p,i){
-    var x1=L+(p[0]-1)*slot, x2=L+p[1]*slot;
-    el('rect',{x:x1+1,y:H-B+22,width:x2-x1-2,height:3,fill:'var(--fg)',opacity:i%2?0.35:0.8});
-    if(p[2]){var t=el('text',{x:(x1+x2)/2,y:H-B+40,'text-anchor':'middle','class':'phase-label'});t.textContent=p[2];}
-  });
-  var cols=[['var(--swim)',4],['var(--bike)',5],['var(--run)',6]];
-  var tip=document.getElementById('tip'), groups=[];
-  function showTip(w){tip.innerHTML='<b>Week '+w[0]+' · '+w[1]+'</b> · '+w[2]+' · '+fmtH(w[3])+' h<br>'+w[9];}
-  W.forEach(function(w,i){
-    var g=el('g',{tabindex:0,role:'button','aria-label':'Week '+w[0]+', '+w[3]+' hours. '+w[9]});
-    var x=L+i*slot+(slot-bw)/2, base=0;
-    cols.forEach(function(c){var v=w[c[1]]; if(v>0){el('rect',{x:x,y:y(base+v),width:bw,height:y(base)-y(base+v),fill:c[0],'class':'bar'},g);} base+=v;});
-    var rest=w[3]-base; if(rest>0.01) el('rect',{x:x,y:y(w[3]),width:bw,height:y(base)-y(w[3]),fill:'var(--other)','class':'bar'},g);
-    el('rect',{x:L+i*slot,y:T,width:slot,height:ph,fill:'transparent'},g);
-    if(w[0]%4===1||w[0]===33){var t=el('text',{x:L+i*slot+slot/2,y:H-B+14,'text-anchor':'middle'});t.textContent=w[0];}
-    g.addEventListener('mouseenter',function(){focus(i)});
-    g.addEventListener('focus',function(){focus(i)});
-    g.addEventListener('click',function(){focus(i)});
-    groups.push(g);
-  });
-  function focus(i){groups.forEach(function(g,j){g.querySelectorAll('rect.bar').forEach(function(r){r.style.opacity=(j===i?1:0.4)});});showTip(W[i]);}
-  svg.addEventListener('mouseleave',function(){groups.forEach(function(g){g.querySelectorAll('rect.bar').forEach(function(r){r.style.opacity=1})});showTip(W[inPlan?cur-1:0]);});
-  // events
-  [[18,'Half'],[22,'Doha 70.3'],[33,'Hamburg']].forEach(function(e){
-    var cx=L+(e[0]-0.5)*slot, g=el('g',{'class':'ev'});
-    el('line',{x1:cx,x2:cx,y1:T-12,y2:y(W[e[0]-1][3])-2},g);
-    var t=el('text',{x:cx,y:T-16,'text-anchor':e[0]===33?'end':'middle'},g);t.textContent=e[1];
-  });
-  if(inPlan){
-    var cx=L+(cur-1)*slot+slot/2;
-    el('path',{d:'M'+(cx-5)+' '+(H-B+3)+' L'+(cx+5)+' '+(H-B+3)+' L'+cx+' '+(H-B-4)+' Z',fill:'var(--accent)'});
-    var t=el('text',{x:cx+8,y:H-B+3,fill:'var(--accent)'});t.style.fill='var(--accent)';t.textContent='now';
+  function render(root,lang){
+    var t=T[lang], q=function(c){return root.querySelector('.'+c);};
+    q('js-days').textContent = days>0 ? days : (days===0 ? t.race : t.done);
+    function setNow(w){
+      q('js-nowWk').textContent=w[0];
+      q('js-nowPhase').textContent=t.ph[w[2]]+' · '+t.weekOf+' '+dstr(w[1],t);
+      q('js-nowFocus').textContent=lang==='ru'?w[10]:w[9];
+      var c=q('js-nowChips'); c.innerHTML='';
+      [[t.total,fmtH(w[3])],[t.run,fmtH(w[6])],[t.bike,fmtH(w[5])],[t.swim,w[4]?fmtH(w[4]):t.none],[t.lrun,w[8]],[t.lride,w[7]]].forEach(function(p){
+        var s=document.createElement('span');s.className='chip';s.textContent=p[0]+' '+p[1];c.appendChild(s);});
+    }
+    if(inPlan){setNow(W[cur-1]); if(cur===3) q('js-nowNote').textContent=t.cold;}
+    else if(cur<1){setNow(W[0]);}
+    else {q('js-nowWk').textContent='✓';q('js-nowPhase').textContent=t.raceDone;q('js-nowFocus').textContent=t.finished;}
+    root.querySelectorAll('.js-phaseBody tr').forEach(function(r){
+      var a=+r.dataset.from,b=+r.dataset.to;
+      if(inPlan&&cur>b) r.classList.add('past');
+      if(inPlan&&cur>=a&&cur<=b) r.classList.add('cur');
+    });
+    // Chart
+    var svg=q('js-chart'), NS='http://www.w3.org/2000/svg';
+    var L=34,R=8,Tp=34,B=56,Wd=900,H=330,pw=Wd-L-R,ph=H-Tp-B,max=16,n=W.length,slot=pw/n,bw=slot*0.68;
+    function el(tag,a,p){var e=document.createElementNS(NS,tag);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
+    function y(v){return Tp+ph-v/max*ph;}
+    [0,4,8,12,16].forEach(function(v){el('line',{x1:L,x2:Wd-R,y1:y(v),y2:y(v),'class':'grid'});var tx=el('text',{x:L-6,y:y(v)+3,'text-anchor':'end'});tx.textContent=v+t.h;});
+    [[1,1],[2,18],[19,19],[20,23],[24,28],[29,31],[32,33]].forEach(function(p,i){
+      var x1=L+(p[0]-1)*slot,x2=L+p[1]*slot;
+      el('rect',{x:x1+1,y:H-B+22,width:x2-x1-2,height:3,fill:'var(--fg)',opacity:i%2?0.35:0.8});
+      if(t.bands[i]){var tx=el('text',{x:(x1+x2)/2,y:H-B+40,'text-anchor':'middle','class':'phase-label'});tx.textContent=t.bands[i];}
+    });
+    var cols=[['var(--swim)',4],['var(--bike)',5],['var(--run)',6]], tip=q('js-tip'), groups=[];
+    function showTip(w){tip.innerHTML='';var b=document.createElement('b');b.textContent=t.week+' '+w[0]+' · '+dstr(w[1],t);tip.appendChild(b);
+      tip.appendChild(document.createTextNode(' · '+t.ph[w[2]]+' · '+fmtH(w[3])+' '+t.h));tip.appendChild(document.createElement('br'));
+      tip.appendChild(document.createTextNode(lang==='ru'?w[10]:w[9]));}
+    function focus(i){groups.forEach(function(g,j){g.querySelectorAll('rect.bar').forEach(function(r){r.style.opacity=(j===i?1:0.4)});});showTip(W[i]);}
+    W.forEach(function(w,i){
+      var g=el('g',{tabindex:0,role:'button','aria-label':t.ariaWeek(w[0],w[3],lang==='ru'?w[10]:w[9])});
+      var x=L+i*slot+(slot-bw)/2,base=0;
+      cols.forEach(function(c){var v=w[c[1]];if(v>0)el('rect',{x:x,y:y(base+v),width:bw,height:y(base)-y(base+v),fill:c[0],'class':'bar'},g);base+=v;});
+      if(w[3]-base>0.01) el('rect',{x:x,y:y(w[3]),width:bw,height:y(base)-y(w[3]),fill:'var(--other)','class':'bar'},g);
+      el('rect',{x:L+i*slot,y:Tp,width:slot,height:ph,fill:'transparent'},g);
+      if(w[0]%4===1||w[0]===33){var tx=el('text',{x:L+i*slot+slot/2,y:H-B+14,'text-anchor':'middle'});tx.textContent=w[0];}
+      ['mouseenter','focus','click'].forEach(function(ev){g.addEventListener(ev,function(){focus(i)});});
+      groups.push(g);
+    });
+    svg.addEventListener('mouseleave',function(){groups.forEach(function(g){g.querySelectorAll('rect.bar').forEach(function(r){r.style.opacity=1})});showTip(W[inPlan?cur-1:0]);});
+    [[18,0],[22,1],[33,2]].forEach(function(e){
+      var cx=L+(e[0]-0.5)*slot,g=el('g',{'class':'ev'});
+      el('line',{x1:cx,x2:cx,y1:Tp-12,y2:y(W[e[0]-1][3])-2},g);
+      var tx=el('text',{x:cx,y:Tp-16,'text-anchor':e[0]===33?'end':'middle'},g);tx.textContent=t.events[e[1]];
+    });
+    if(inPlan){
+      var cx=L+(cur-1)*slot+slot/2;
+      el('path',{d:'M'+(cx-5)+' '+(H-B+3)+' L'+(cx+5)+' '+(H-B+3)+' L'+cx+' '+(H-B-4)+' Z',fill:'var(--accent)'});
+      var tx=el('text',{x:cx+8,y:H-B+3});tx.style.fill='var(--accent)';tx.textContent=t.now;
+    }
+    showTip(W[inPlan?cur-1:0]);
   }
-  showTip(W[inPlan?cur-1:0]);
+  document.querySelectorAll('.wrap[data-lang]').forEach(function(r){render(r,r.dataset.lang);});
+
+  // Language
+  var lang='en';
+  try{var saved=localStorage.getItem('rth-lang');if(saved==='en'||saved==='ru')lang=saved;else if((navigator.language||'').toLowerCase().indexOf('ru')===0)lang='ru';}catch(e){}
+  function setLang(l){
+    lang=l; document.documentElement.lang=l;
+    document.querySelectorAll('.wrap[data-lang]').forEach(function(r){r.classList.toggle('off',r.dataset.lang!==l);});
+    document.querySelectorAll('[data-setlang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.setlang===l));});
+    var t=T[l];
+    document.querySelectorAll('[data-tab]').forEach(function(a){a.textContent=t.tabs[a.dataset.tab];});
+    document.querySelector('.tabs').setAttribute('aria-label',t.nav);
+    document.querySelector('.tabs .brand').textContent=t.brand;
+    document.title=t.title;
+    try{localStorage.setItem('rth-lang',l);}catch(e){}
+    route();
+  }
+  document.querySelectorAll('[data-setlang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.setlang);});});
+
   // Pages
-  var order=[['overview','Overview'],['season','Season'],['run','Run block'],['week','Week'],['body','Power & weight'],['race','Race days']];
+  var order=['overview','season','run','week','body','race'];
   function route(){
-    var h=(location.hash||'').slice(1); var i=order.findIndex(function(o){return o[0]===h}); if(i<0)i=0; var v=order[i][0];
+    var h=(location.hash||'').slice(1),i=order.indexOf(h); if(i<0)i=0; var v=order[i], t=T[lang];
     document.querySelectorAll('[data-view]').forEach(function(e){e.hidden=e.dataset.view!==v;});
     document.querySelectorAll('[data-tab]').forEach(function(a){if(a.dataset.tab===v){a.setAttribute('aria-current','page');try{a.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}}else a.removeAttribute('aria-current');});
-    var pg=document.getElementById('pager'); pg.innerHTML='';
-    function link(o,cls,dir){var a=document.createElement('a');a.href='#'+o[0];a.className=cls;a.innerHTML='<span class="eyebrow">'+dir+'</span><span class="lbl"></span>';a.querySelector('.lbl').textContent=o[1];pg.appendChild(a);}
-    if(i>0)link(order[i-1],'prev','← Previous');
-    if(i<order.length-1)link(order[i+1],'next','Next →');
-    document.title='Road to Hamburg 2027';
+    document.querySelectorAll('.js-pager').forEach(function(pg){
+      pg.innerHTML='';
+      function link(k,cls,dir){var a=document.createElement('a');a.href='#'+k;a.className=cls;var s1=document.createElement('span');s1.className='eyebrow';s1.textContent=dir;var s2=document.createElement('span');s2.className='lbl';s2.textContent=t.tabs[k];a.appendChild(s1);a.appendChild(s2);pg.appendChild(a);}
+      if(i>0)link(order[i-1],'prev',t.prev);
+      if(i<order.length-1)link(order[i+1],'next',t.next);
+    });
   }
   window.addEventListener('hashchange',function(){route();window.scrollTo(0,0);});
-  route();
+  setLang(lang);
 })();
 </script>
 </body>
