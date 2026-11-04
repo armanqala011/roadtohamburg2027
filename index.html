@@ -137,13 +137,42 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   .stat{border-left:none;border-top:1px solid var(--line)}
 }
 @media (prefers-reduced-motion:no-preference){ #chart rect.bar{transition:opacity .15s} }
+
+/* Menu */
+[hidden]{display:none!important}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.tabs .brand{font-family:var(--display);font-weight:700;font-size:1.15rem;text-transform:uppercase;color:var(--fg);text-decoration:none;white-space:nowrap;letter-spacing:.02em}
+.tablist{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
+.tablist::-webkit-scrollbar{display:none}
+.tablist a{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:16px 10px 13px;border-bottom:3px solid transparent;white-space:nowrap}
+.tablist a:hover{color:var(--fg)}
+.tablist a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+.tablist a:focus-visible,.tabs .brand:focus-visible,.pager a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pager a{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:12px 16px;background:var(--surface);min-width:0}
+.pager a:hover{border-color:var(--accent)}
+.pager a.next{margin-left:auto;text-align:right}
+.pager .lbl{font-family:var(--display);font-weight:700;font-size:1.3rem;text-transform:uppercase}
+@media (max-width:760px){.tabs{flex-direction:column;align-items:stretch;gap:0}.tabs .brand{padding-top:10px}.tablist a{padding:10px 10px 9px}}
 </style>
 </head>
 <body>
 
+<nav class="tabs" aria-label="Sections">
+  <a class="brand" href="#overview">Road to Hamburg</a>
+  <div class="tablist">
+    <a href="#overview" data-tab="overview">Overview</a>
+    <a href="#season" data-tab="season">Season</a>
+    <a href="#run" data-tab="run">Run block</a>
+    <a href="#week" data-tab="week">Week</a>
+    <a href="#body" data-tab="body">Power &amp; weight</a>
+    <a href="#race" data-tab="race">Race days</a>
+  </div>
+</nav>
 <div class="wrap">
 
-<header class="hero">
+<header data-view="overview" class="hero">
   <div class="meta">
     <div class="eyebrow">Arman Qala · 33-week plan · v5</div>
     <h1>Road to <span>Hamburg</span> 2027</h1>
@@ -157,7 +186,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </div>
 </header>
 
-<section>
+<section data-view="overview">
   <div class="sec-head"><div class="eyebrow">Goal splits vs Vietnam (10 May 2026)</div></div>
   <div class="splits">
     <div class="split"><div class="leg"><i class="dot" style="background:var(--swim)"></i>Swim</div><div class="t">1:12</div><div class="was">was 1:22 · ~1:54/100 m</div></div>
@@ -169,7 +198,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   <p class="lede">The run is where the time is. Your 1:38 half marathon predicts a 3:45–3:55 Ironman marathon; Vietnam's 4:53 was heat, bike pacing and fuelling, which is the most fixable kind of gap.</p>
 </section>
 
-<section aria-labelledby="now-h">
+<section data-view="overview" aria-labelledby="now-h">
   <div class="sec-head"><div class="eyebrow">This week</div><h2 id="now-h">Where you are now</h2></div>
   <div class="now">
     <div class="wk"><small>PLAN WEEK</small><span id="nowWk">—</span><small id="nowOf" style="margin-top:6px">of 33</small></div>
@@ -182,7 +211,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </div>
 </section>
 
-<section aria-labelledby="season-h">
+<section data-view="season" aria-labelledby="season-h">
   <div class="sec-head"><div class="eyebrow">33 weeks · planned hours</div><h2 id="season-h">The season</h2>
   <p class="lede">Weekly training hours split by sport. Run volume climbs through winter, then the bike takes over after the half marathon. Tap or hover a week for its focus.</p></div>
   <div class="chart-box">
@@ -197,22 +226,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </div>
 </section>
 
-<section aria-labelledby="cp-h">
-  <div class="sec-head"><div class="eyebrow">Miss one and we adjust the target, not force it</div><h2 id="cp-h">Checkpoints</h2></div>
-  <div class="cps">
-    <div class="cp"><div class="when">WK 3–4 · EARLY NOV</div><div class="what">First tests</div><div class="target">30-min run test + 20-min FTP. Sets zones and the baseline. Moved to week 4 after the cold.</div></div>
-    <div class="cp"><div class="when">WK 5 · 16 NOV</div><div class="what">Pool reopens</div><div class="target">Swim CSS test: 400 m and 200 m all-out.</div></div>
-    <div class="cp"><div class="when">WK 13 · MID-JAN</div><div class="what">Retest</div><div class="target">Run threshold faster than ~4:50/km.</div></div>
-    <div class="cp race"><div class="when">WK 18 · MID-FEB</div><div class="what">Half marathon</div><div class="target">Goal 1:30 (4:16/km). On track under 1:35. Best so far 1:38.</div></div>
-    <div class="cp race"><div class="when">WK 22 · SAT 20 MAR</div><div class="what">IRONMAN 70.3 Doha</div><div class="target">Under 4:50 with a run under 1:40.</div></div>
-    <div class="cp"><div class="when">WK 24 · END MAR</div><div class="what">FTP retest</div><div class="target">FTP +8–10% on the first test, about 68 kg.</div></div>
-    <div class="cp"><div class="when">WK 27 · LATE APR</div><div class="what">Long brick</div><div class="target">5:00 ride at IM power + 50 min at 5:35/km.</div></div>
-    <div class="cp"><div class="when">WK 30 · MID-MAY</div><div class="what">Long brick</div><div class="target">5:30 ride at IM power + 30 min at 5:40/km, controlled.</div></div>
-    <div class="cp race"><div class="when">WK 33 · SUN 6 JUN</div><div class="what">IRONMAN Hamburg</div><div class="target">Sub-10:30.</div></div>
-  </div>
-</section>
-
-<section aria-labelledby="phases-h">
+<section data-view="season" aria-labelledby="phases-h">
   <div class="sec-head"><div class="eyebrow">Seven phases</div><h2 id="phases-h">Phases</h2></div>
   <div class="tbl"><table>
     <thead><tr><th>Weeks</th><th>Dates</th><th>Phase</th><th>Goal</th></tr></thead>
@@ -228,7 +242,22 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </table></div>
 </section>
 
-<section aria-labelledby="run-h">
+<section data-view="season" aria-labelledby="cp-h">
+  <div class="sec-head"><div class="eyebrow">Miss one and we adjust the target, not force it</div><h2 id="cp-h">Checkpoints</h2></div>
+  <div class="cps">
+    <div class="cp"><div class="when">WK 3–4 · EARLY NOV</div><div class="what">First tests</div><div class="target">30-min run test + 20-min FTP. Sets zones and the baseline. Moved to week 4 after the cold.</div></div>
+    <div class="cp"><div class="when">WK 5 · 16 NOV</div><div class="what">Pool reopens</div><div class="target">Swim CSS test: 400 m and 200 m all-out.</div></div>
+    <div class="cp"><div class="when">WK 13 · MID-JAN</div><div class="what">Retest</div><div class="target">Run threshold faster than ~4:50/km.</div></div>
+    <div class="cp race"><div class="when">WK 18 · MID-FEB</div><div class="what">Half marathon</div><div class="target">Goal 1:30 (4:16/km). On track under 1:35. Best so far 1:38.</div></div>
+    <div class="cp race"><div class="when">WK 22 · SAT 20 MAR</div><div class="what">IRONMAN 70.3 Doha</div><div class="target">Under 4:50 with a run under 1:40.</div></div>
+    <div class="cp"><div class="when">WK 24 · END MAR</div><div class="what">FTP retest</div><div class="target">FTP +8–10% on the first test, about 68 kg.</div></div>
+    <div class="cp"><div class="when">WK 27 · LATE APR</div><div class="what">Long brick</div><div class="target">5:00 ride at IM power + 50 min at 5:35/km.</div></div>
+    <div class="cp"><div class="when">WK 30 · MID-MAY</div><div class="what">Long brick</div><div class="target">5:30 ride at IM power + 30 min at 5:40/km, controlled.</div></div>
+    <div class="cp race"><div class="when">WK 33 · SUN 6 JUN</div><div class="what">IRONMAN Hamburg</div><div class="target">Sub-10:30.</div></div>
+  </div>
+</section>
+
+<section data-view="run" aria-labelledby="run-h">
   <div class="sec-head"><div class="eyebrow">26 Oct 2026 – mid-Feb 2027</div><h2 id="run-h">Run block</h2>
   <p class="lede">Your call: running first until the half marathon. Volume rises about 10% a week with a lighter week every fourth.</p></div>
   <div class="tbl"><table>
@@ -261,7 +290,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </div>
 </section>
 
-<section aria-labelledby="week-h">
+<section data-view="week" aria-labelledby="week-h">
   <div class="sec-head"><div class="eyebrow">Built around Mon–Fri 8:00–19:00, Sat 8:00–13:00</div><h2 id="week-h">A typical week</h2>
   <p class="lede">Run-block version from week 5, once the pool reopens. Long run Saturday, long ride Sunday, so the hardest running stays away from the biggest ride.</p></div>
   <div class="days">
@@ -287,7 +316,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </div>
 </section>
 
-<section aria-labelledby="body-h">
+<section data-view="body" aria-labelledby="body-h">
   <div class="sec-head"><div class="eyebrow">Power and body weight</div><h2 id="body-h">Engine and weight</h2></div>
   <div class="tbl"><table>
     <thead><tr><th></th><th>Now (Oct 2026)</th><th>Doha · 20 Mar</th><th>Hamburg · 6 Jun</th></tr></thead>
@@ -308,7 +337,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </div>
 </section>
 
-<section aria-labelledby="zones-h">
+<section data-view="body" aria-labelledby="zones-h">
   <div class="sec-head"><div class="eyebrow">Set from the tests</div><h2 id="zones-h">Zones</h2></div>
   <div class="tbl"><table>
     <thead><tr><th>Zone</th><th>HR (% LTHR)</th><th>Power (% FTP)</th><th>Feel</th></tr></thead>
@@ -323,7 +352,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   <p class="lede">Tests: run LTHR = average HR of the last 20 min of a 30-min solo time trial. FTP = 95% of a 20-min all-out. Swim CSS = (T400 − T200) ÷ 2 per 100 m.</p>
 </section>
 
-<section aria-labelledby="race-h">
+<section data-view="race" aria-labelledby="race-h">
   <div class="sec-head"><div class="eyebrow">Lessons from Vietnam</div><h2 id="race-h">Race days</h2></div>
   <div class="cols">
     <div><h3>70.3 Doha · Sat 20 Mar</h3><ul>
@@ -342,6 +371,7 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
   </div>
 </section>
 
+<div class="pager" id="pager"></div>
 <footer>Plan version 5, 14 Oct 2026, with the week 3 tests moved after the early-November cold. Training data from TrainingPeaks (Feb 2025 – Oct 2026) and weekly logs.</footer>
 </div>
 
@@ -453,6 +483,20 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
     var t=el('text',{x:cx+8,y:H-B+3,fill:'var(--accent)'});t.style.fill='var(--accent)';t.textContent='now';
   }
   showTip(W[inPlan?cur-1:0]);
+  // Pages
+  var order=[['overview','Overview'],['season','Season'],['run','Run block'],['week','Week'],['body','Power & weight'],['race','Race days']];
+  function route(){
+    var h=(location.hash||'').slice(1); var i=order.findIndex(function(o){return o[0]===h}); if(i<0)i=0; var v=order[i][0];
+    document.querySelectorAll('[data-view]').forEach(function(e){e.hidden=e.dataset.view!==v;});
+    document.querySelectorAll('[data-tab]').forEach(function(a){if(a.dataset.tab===v){a.setAttribute('aria-current','page');try{a.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}}else a.removeAttribute('aria-current');});
+    var pg=document.getElementById('pager'); pg.innerHTML='';
+    function link(o,cls,dir){var a=document.createElement('a');a.href='#'+o[0];a.className=cls;a.innerHTML='<span class="eyebrow">'+dir+'</span><span class="lbl"></span>';a.querySelector('.lbl').textContent=o[1];pg.appendChild(a);}
+    if(i>0)link(order[i-1],'prev','← Previous');
+    if(i<order.length-1)link(order[i+1],'next','Next →');
+    document.title='Road to Hamburg 2027';
+  }
+  window.addEventListener('hashchange',function(){route();window.scrollTo(0,0);});
+  route();
 })();
 </script>
 </body>
