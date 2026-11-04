@@ -7,17 +7,18 @@ Training plan site for Arman's 33-week build toward IRONMAN Hamburg (Sunday 6 Ju
 ## Files
 
 ```
-index.html     Page markup: menu, then one block of pages per language (EN, RU)
+index.html     Page markup: menu and three pages (Goal, Current form, Weekly plan), one block per language
 css/style.css  All styles, light and dark theme
 js/data.js     The 33 weeks: dates, hours per sport, long sessions, focus (EN + RU)
 js/i18n.js     Interface text in both languages (menu, chart labels, phase names)
-js/app.js      Countdown, "this week", season chart, page menu, language switch
+js/app.js      Countdown, this week day by day, all-weeks chart, page menu, language switch
 .nojekyll      Tells GitHub Pages to serve the files as they are
 ```
 
 ## Updating the plan
 
 - Weekly numbers or focus text: edit `js/data.js`.
+- Current form (weight, paces, last weeks): edit the "now" page in `index.html`, both languages.
 - Page text: edit `index.html`, in both the `data-lang="en"` and `data-lang="ru"` blocks.
 
 No build step. GitHub Pages serves the `main` branch root.

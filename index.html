@@ -13,64 +13,106 @@
 <body>
 <nav class="tabs" aria-label="Sections">
   <div class="topline">
-    <a class="brand" href="#overview">Road to Hamburg</a>
+    <a class="brand" href="#goal">Road to Hamburg</a>
     <div class="langs" role="group" aria-label="Language / Язык"><button type="button" id="lang-en" data-setlang="en" aria-pressed="true">EN</button><button type="button" id="lang-ru" data-setlang="ru" aria-pressed="false">RU</button></div>
   </div>
   <div class="tablist">
-    <a href="#overview" data-tab="overview">Overview</a>
-    <a href="#season" data-tab="season">Season</a>
-    <a href="#run" data-tab="run">Run block</a>
-    <a href="#week" data-tab="week">Week</a>
-    <a href="#body" data-tab="body">Power &amp; weight</a>
-    <a href="#race" data-tab="race">Race days</a>
+    <a href="#goal" data-tab="goal">Goal</a>
+    <a href="#now" data-tab="now">Current form</a>
+    <a href="#plan" data-tab="plan">Weekly plan</a>
   </div>
 </nav>
 <div class="wrap" data-lang="en" lang="en">
 
-<header data-view="overview" class="hero">
+<header data-view="goal" class="hero">
   <div class="meta">
-    <div class="eyebrow">Arman Qala · 33-week plan · v5</div>
-    <h1>Road to <span>Hamburg</span> 2027</h1>
-    <p class="lede">From an 11:54 in Vietnam to a sub-10:30 Ironman. Run first until February, then build the whole race. Every session fits around a 60-hour work week in Shymkent.</p>
+    <div class="eyebrow">Arman Qala · IRONMAN Hamburg 2027</div>
+    <h1>Sub <span>10:30</span> in Hamburg</h1>
+    <p class="lede">From 11:54 in Vietnam to under 10:30 in Hamburg. Most of the 87 minutes will come from the run.</p>
   </div>
   <div class="bib" aria-label="Countdown to race day">
-    <div class="eyebrow" style="text-align:center">IRONMAN Hamburg · Sun 6 June 2027</div>
+    <div class="eyebrow" style="text-align:center">Sun 6 June 2027</div>
     <div class="big num js-days" style="text-align:center">—</div>
     <div class="eyebrow" style="text-align:center">days to go</div>
-    <div class="row"><span>3.8 km swim</span><span>180 km bike</span><span>42.2 km run</span></div>
   </div>
 </header>
 
-<section data-view="overview">
-  <div class="sec-head"><div class="eyebrow">Goal splits vs Vietnam (10 May 2026)</div></div>
+<section data-view="goal">
+  <div class="sec-head"><div class="eyebrow">Race plan vs Vietnam</div></div>
   <div class="splits">
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--swim)"></i>Swim</div><div class="t">1:12</div><div class="was">was 1:22 · ~1:54/100 m</div></div>
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--bike)"></i>Bike</div><div class="t">5:10</div><div class="was">was 5:31 · ~34.8 km/h</div></div>
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--run)"></i>Run</div><div class="t">3:58</div><div class="was">was 4:53 · ~5:39/km</div></div>
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--other)"></i>T1 + T2</div><div class="t">0:07</div><div class="was">was ~0:08</div></div>
-    <div class="split total"><div class="leg">Finish</div><div class="t">10:27</div><div class="was">was 11:54 · 87 min faster</div></div>
-  </div>
-  <p class="lede">The run is where the time is. Your 1:38 half marathon predicts a 3:45–3:55 Ironman marathon; Vietnam's 4:53 was heat, bike pacing and fuelling, which is the most fixable kind of gap.</p>
-</section>
-
-<section data-view="overview">
-  <div class="sec-head"><div class="eyebrow">This week</div><h2>Where you are now</h2></div>
-  <div class="now">
-    <div class="wk"><small>PLAN WEEK</small><span class="js-nowWk">—</span><small style="margin-top:6px">of 33</small></div>
-    <div class="now-body">
-      <h3 class="js-nowPhase">—</h3>
-      <p class="js-nowFocus">—</p>
-      <div class="chips js-nowChips"></div>
-      <p class="lede js-nowNote"></p>
-    </div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--swim)"></i>Swim 3.8 km</div><div class="t">1:12</div><div class="was">was 1:22</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--bike)"></i>Bike 180 km</div><div class="t">5:10</div><div class="was">was 5:31</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--run)"></i>Run 42.2 km</div><div class="t">3:58</div><div class="was">was 4:53 · 5:39/km</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--other)"></i>T1 + T2</div><div class="t">0:07</div><div class="was">was 0:08</div></div>
+    <div class="split total"><div class="leg">Finish</div><div class="t">10:27</div><div class="was">was 11:54</div></div>
   </div>
 </section>
 
-<section data-view="season">
-  <div class="sec-head"><div class="eyebrow">33 weeks · planned hours</div><h2>The season</h2>
-  <p class="lede">Weekly training hours split by sport. Run volume climbs through winter, then the bike takes over after the half marathon. Tap or hover a week for its focus.</p></div>
+<section data-view="goal">
+  <div class="sec-head"><div class="eyebrow">Three races</div><h2>The road there</h2></div>
+  <div class="cps">
+    <div class="cp"><div class="when">MID-FEBRUARY 2027</div><div class="what">Half marathon</div><div class="target">Goal 1:30. Best so far 1:38.</div></div>
+    <div class="cp"><div class="when">SAT 20 MARCH 2027</div><div class="what">IRONMAN 70.3 Doha</div><div class="target">Goal under 4:50. Tune-up race.</div></div>
+    <div class="cp race"><div class="when">SUN 6 JUNE 2027</div><div class="what">IRONMAN Hamburg</div><div class="target">Goal under 10:30.</div></div>
+  </div>
+</section>
+
+<section data-view="goal">
+  <div class="sec-head"><div class="eyebrow">What has to change</div><h2>From now to race day</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Now</th><th>Hamburg</th></tr></thead>
+    <tbody>
+      <tr><td>Weight</td><td class="n">72–73 kg</td><td class="n">65 kg</td></tr>
+      <tr><td>FTP</td><td class="n">~190 W (test pending)</td><td class="n">215–220 W</td></tr>
+      <tr><td>Easy run</td><td class="n">6:05/km at HR 140</td><td class="n">5:39/km off the bike</td></tr>
+      <tr><td>Training per week</td><td class="n">5 h</td><td class="n">up to 15.5 h</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section data-view="now">
+  <div class="sec-head"><div class="eyebrow">Updated 4 Nov 2026</div><h2>Current form</h2>
+  <p class="lede">Week 3 of 33, in the run block. Recovering from a cold caught on 31 Oct, so the fitness tests move to next week.</p></div>
+  <div class="tiles">
+    <div class="tile"><div class="k">Weight</div><div class="v">72–73<small>kg</small></div><div class="sub">goal 65 kg</div></div>
+    <div class="tile"><div class="k">Easy run</div><div class="v">6:05<small>/km</small></div><div class="sub">at HR 140 (13 Oct)</div></div>
+    <div class="tile"><div class="k">5 km tempo</div><div class="v">4:45<small>/km</small></div><div class="sub">close to threshold (30 Oct)</div></div>
+    <div class="tile"><div class="k">Bike, 60 km hilly</div><div class="v">133<small>W</small></div><div class="sub">HR 149, down from 155</div></div>
+    <div class="tile"><div class="k">Last week</div><div class="v">5.0<small>h</small></div><div class="sub">29.7 km run, plan 30</div></div>
+    <div class="tile"><div class="k">Swim</div><div class="v">—</div><div class="sub">pool from 16 Nov</div></div>
+  </div>
+</section>
+
+<section data-view="now">
+  <div class="sec-head"><div class="eyebrow">Planned vs done</div><h2>Last three weeks</h2></div>
+  <div class="tbl"><table class="wide">
+    <thead><tr><th>Week</th><th>Planned</th><th>Done</th><th>Run</th><th>Missing</th></tr></thead>
+    <tbody>
+      <tr><td class="n">12–18 Oct</td><td class="n">—</td><td class="n">4.3 h</td><td class="n">21 km</td><td>Before the plan</td></tr>
+      <tr><td class="n">19–25 Oct</td><td class="n">5.3 h</td><td class="n">4.1 h</td><td class="n">38.5 km</td><td>Bike, strength; all runs too hard</td></tr>
+      <tr><td class="n">26 Oct – 1 Nov</td><td class="n">5.3 h</td><td class="n">5.0 h</td><td class="n">29.7 km</td><td>Long run, run off the bike, strength</td></tr>
+    </tbody>
+  </table></div>
+  <div class="notes">
+    <div class="note good"><div class="k">Going well</div><p>Endurance is coming back. Same ride, same power, 6 bpm lower heart rate than two weeks earlier.</p></div>
+    <div class="note warn"><div class="k">Watch</div><p>Three weeks in a row with a hard run that wasn't in the plan. Keep hard running for the planned days, from 16 Nov.</p></div>
+    <div class="note warn"><div class="k">Missing</div><p>The Saturday long run. It's the most important run for the half marathon.</p></div>
+  </div>
+</section>
+
+<section data-view="plan">
+  <div class="sec-head"><div class="eyebrow js-weekLabel">—</div><h2>This week</h2>
+  <p class="lede js-weekFocus">—</p></div>
+  <div class="chips js-weekChips"></div>
+  <div class="days js-days7"></div>
+  <p class="lede js-weekNext"></p>
+</section>
+
+<section data-view="plan">
+  <div class="sec-head"><div class="eyebrow">33 weeks · hours per week</div><h2>All weeks</h2>
+  <p class="lede">Tap a week to see its focus.</p></div>
   <div class="chart-box">
-    <div class="chart-scroll"><svg class="js-chart" viewBox="0 0 900 330" role="img" aria-label="Stacked bar chart of weekly training hours by sport across 33 weeks"></svg></div>
+    <div class="chart-scroll"><svg class="js-chart" viewBox="0 0 900 330" role="img" aria-label="Weekly training hours by sport across 33 weeks"></svg></div>
     <div class="legend">
       <span><i class="dot" style="background:var(--swim)"></i>Swim</span>
       <span><i class="dot" style="background:var(--bike)"></i>Bike</span>
@@ -81,201 +123,100 @@
   </div>
 </section>
 
-<section data-view="season">
-  <div class="sec-head"><div class="eyebrow">Seven phases</div><h2>Phases</h2></div>
-  <div class="tbl"><table>
-    <thead><tr><th>Weeks</th><th>Dates</th><th>Phase</th><th>Goal</th></tr></thead>
-    <tbody class="js-phaseBody">
-      <tr data-from="1" data-to="1"><td class="n">1</td><td class="n">19–25 Oct</td><td>Return</td><td>Easy return after five quiet months</td></tr>
-      <tr data-from="2" data-to="18"><td class="n">2–18</td><td class="n">26 Oct – 21 Feb</td><td>Run block</td><td>Run 30 → 58 km/week, half marathon mid-Feb; bike ticking over indoors, swim from mid-Nov</td></tr>
-      <tr data-from="19" data-to="19"><td class="n">19</td><td class="n">22–28 Feb</td><td>Bike/tri transition</td><td>Bike volume back up, first bricks</td></tr>
-      <tr data-from="20" data-to="23"><td class="n">20–23</td><td class="n">1–28 Mar</td><td>Doha block</td><td>Sharpen, taper, race 70.3 Doha, recover</td></tr>
-      <tr data-from="24" data-to="28"><td class="n">24–28</td><td class="n">29 Mar – 2 May</td><td>Build</td><td>Race-specific bricks, IM-pace running off the bike, nutrition practice</td></tr>
-      <tr data-from="29" data-to="31"><td class="n">29–31</td><td class="n">3–23 May</td><td>Peak</td><td>Biggest weeks (15.5 h), open water, race rehearsal</td></tr>
-      <tr data-from="32" data-to="33"><td class="n">32–33</td><td class="n">24 May – 6 Jun</td><td>Taper</td><td>Shed fatigue, keep sharpness, race</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section data-view="season">
-  <div class="sec-head"><div class="eyebrow">Miss one and we adjust the target, not force it</div><h2>Checkpoints</h2></div>
-  <div class="cps">
-    <div class="cp"><div class="when">WK 3–4 · EARLY NOV</div><div class="what">First tests</div><div class="target">30-min run test + 20-min FTP. Sets zones and the baseline. Moved to week 4 after the cold.</div></div>
-    <div class="cp"><div class="when">WK 5 · 16 NOV</div><div class="what">Pool reopens</div><div class="target">Swim CSS test: 400 m and 200 m all-out.</div></div>
-    <div class="cp"><div class="when">WK 13 · MID-JAN</div><div class="what">Retest</div><div class="target">Run threshold faster than ~4:50/km.</div></div>
-    <div class="cp race"><div class="when">WK 18 · MID-FEB</div><div class="what">Half marathon</div><div class="target">Goal 1:30 (4:16/km). On track under 1:35. Best so far 1:38.</div></div>
-    <div class="cp race"><div class="when">WK 22 · SAT 20 MAR</div><div class="what">IRONMAN 70.3 Doha</div><div class="target">Under 4:50 with a run under 1:40.</div></div>
-    <div class="cp"><div class="when">WK 24 · END MAR</div><div class="what">FTP retest</div><div class="target">FTP +8–10% on the first test, about 68 kg.</div></div>
-    <div class="cp"><div class="when">WK 27 · LATE APR</div><div class="what">Long brick</div><div class="target">5:00 ride at IM power + 50 min at 5:35/km.</div></div>
-    <div class="cp"><div class="when">WK 30 · MID-MAY</div><div class="what">Long brick</div><div class="target">5:30 ride at IM power + 30 min at 5:40/km, controlled.</div></div>
-    <div class="cp race"><div class="when">WK 33 · SUN 6 JUN</div><div class="what">IRONMAN Hamburg</div><div class="target">Sub-10:30.</div></div>
-  </div>
-</section>
-
-<section data-view="run">
-  <div class="sec-head"><div class="eyebrow">26 Oct 2026 – mid-Feb 2027</div><h2>Run block</h2>
-  <p class="lede">Your call: running first until the half marathon. Volume rises about 10% a week with a lighter week every fourth.</p></div>
-  <div class="tbl"><table>
-    <thead><tr><th>Weeks</th><th>Dates</th><th>Run km/wk</th><th>Long run</th><th>Quality</th></tr></thead>
-    <tbody>
-      <tr><td class="n">2–4</td><td class="n">26 Oct – 15 Nov</td><td class="n">30 → 37</td><td class="n">1:10 → 1:20</td><td>Strides only, plus the run test</td></tr>
-      <tr><td class="n">5–7</td><td class="n">16 Nov – 6 Dec</td><td class="n">41 → 47</td><td class="n">1:25 → 1:35</td><td>1 per week (threshold)</td></tr>
-      <tr><td class="n">8</td><td class="n">7–13 Dec</td><td class="n">35</td><td class="n">1:15</td><td><span class="tag">recovery</span></td></tr>
-      <tr><td class="n">9–11</td><td class="n">14 Dec – 3 Jan</td><td class="n">48 → 51, 45</td><td class="n">up to 1:45</td><td>2 per week (threshold + HM pace)</td></tr>
-      <tr><td class="n">12</td><td class="n">4–10 Jan</td><td class="n">38</td><td class="n">1:20</td><td><span class="tag">recovery</span></td></tr>
-      <tr><td class="n">13–15</td><td class="n">11–31 Jan</td><td class="n">52 → 58</td><td class="n">1:50 → 2:00</td><td>2 per week</td></tr>
-      <tr><td class="n">16</td><td class="n">1–7 Feb</td><td class="n">44</td><td class="n">1:30</td><td><span class="tag">recovery</span></td></tr>
-      <tr><td class="n">17–18</td><td class="n">8–21 Feb</td><td class="n">52, race week</td><td class="n">race</td><td>Half marathon</td></tr>
-    </tbody>
-  </table></div>
-  <div class="cols">
-    <div><h3>Rules</h3><ul>
-      <li>About 80% of running stays easy: at or below 145 bpm until the test sets your zones.</li>
-      <li>Hard running only on the days shown. No intervals before 16 November apart from the test.</li>
-      <li>Never skip the Saturday long run. It's the most important run for the half marathon.</li>
-      <li>Strength twice a week, 20 min: calf raises, single-leg squats, lunges, glute bridges, core.</li>
-      <li>Pain that changes how you run, or is worse the next morning: 2–3 days off running, ride instead, and tell me.</li>
-    </ul></div>
-    <div><h3>Winter in Shymkent</h3><ul>
-      <li>All rides on the trainer until about March. Indoor time counts about 1.2× outdoor: ride 1:30 for a listed 1:45.</li>
-      <li>Keep rides in Zone 2 (65–75% FTP), with 5–10 min blocks at 80–85% from week 9.</li>
-      <li>Run outdoors down to about −10 °C with layers. Treadmill at 1% incline when it's icy, and for quality sessions.</li>
-      <li>Strong fan and 750 ml–1 l per hour on the trainer.</li>
-    </ul></div>
-  </div>
-</section>
-
-<section data-view="week">
-  <div class="sec-head"><div class="eyebrow">Built around Mon–Fri 8:00–19:00, Sat 8:00–13:00</div><h2>A typical week</h2>
-  <p class="lede">Run-block version from week 5, once the pool reopens. Long run Saturday, long ride Sunday, so the hardest running stays away from the biggest ride.</p></div>
-  <div class="days">
-    <div class="day rest"><div class="d">Mon</div><div>Rest</div></div>
-    <div class="day"><div class="d">Tue</div><div class="s run">5:30 run quality, 60–75 min</div><div class="s">Strength 20 min</div></div>
-    <div class="day"><div class="d">Wed</div><div class="s swim">7:00 swim, 45 min</div><div class="s bike">Optional 45–60 min trainer</div></div>
-    <div class="day"><div class="d">Thu</div><div class="s run">5:30 easy run</div></div>
-    <div class="day"><div class="d">Fri</div><div class="s run">6:00 easy run + strides</div><div class="s swim">7:00 swim, 45 min</div></div>
-    <div class="day"><div class="d">Sat</div><div class="s run">14:30 long run, Z2</div><div class="s">Strength 20 min</div></div>
-    <div class="day"><div class="d">Sun</div><div class="s bike">Long ride, indoors in winter</div><div class="s run">15–20 min run off the bike</div></div>
-  </div>
-  <div class="cols">
-    <div><h3>Sleep and work</h3><ul>
-      <li>With 5:00 alarms, lights out by 21:30–22:00. Under 6 hours of sleep means skip that morning's session.</li>
-      <li>A heavy day on site counts as load. Make the next morning easy or skip it.</li>
-      <li>Evenings after 19:00 only for short easy sessions, never intervals.</li>
-    </ul></div>
-    <div><h3>Crunch weeks</h3><ul>
-      <li>Keep three sessions: Saturday long run, Sunday long ride, one swim (about 6 hours).</li>
-      <li>Drop the rest without guilt and don't make up missed sessions.</li>
-      <li>If you know a crunch is coming, tell me and I'll swap it with a recovery week.</li>
-    </ul></div>
-  </div>
-</section>
-
-<section data-view="body">
-  <div class="sec-head"><div class="eyebrow">Power and body weight</div><h2>Engine and weight</h2></div>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>Now (Oct 2026)</th><th>Doha · 20 Mar</th><th>Hamburg · 6 Jun</th></tr></thead>
-    <tbody>
-      <tr><td>FTP</td><td class="n">test = baseline</td><td class="n">~205 W</td><td class="n">215–220 W</td></tr>
-      <tr><td>Race power</td><td class="n">—</td><td class="n">80–83% FTP</td><td class="n">155–160 W (70–75%)</td></tr>
-      <tr><td>Weight</td><td class="n">72–73 kg</td><td class="n">~68 kg</td><td class="n">65 kg</td></tr>
-    </tbody>
-  </table></div>
-  <div class="cols">
-    <div><p>Your aero position is excellent (CdA about 0.23 m²: 33 km/h on 128 W in Vietnam), so the bike work is raising FTP. Losing 5 kg is worth roughly 15–20 minutes over a marathon at the same fitness.</p></div>
-    <div><ul>
-      <li>Lose 0.25–0.5 kg a week, with the deficit on rest and easy days only.</li>
-      <li>Eat fully around long and hard sessions. Protein 120–140 g a day.</li>
-      <li>Cut liquid calories and late-evening snacks first.</li>
-      <li>Stop the deficit three weeks before Hamburg. Strong at 66 kg beats tired at 65.</li>
-    </ul></div>
-  </div>
-</section>
-
-<section data-view="body">
-  <div class="sec-head"><div class="eyebrow">Set from the tests</div><h2>Zones</h2></div>
-  <div class="tbl"><table>
-    <thead><tr><th>Zone</th><th>HR (% LTHR)</th><th>Power (% FTP)</th><th>Feel</th></tr></thead>
-    <tbody>
-      <tr><td>Z1 recovery</td><td class="n">&lt; 81%</td><td class="n">&lt; 55%</td><td>Very easy</td></tr>
-      <tr><td>Z2 aerobic</td><td class="n">81–89%</td><td class="n">56–75%</td><td>Full sentences</td></tr>
-      <tr><td>Z3 tempo / IM effort</td><td class="n">90–93%</td><td class="n">76–90%</td><td>A few words at a time</td></tr>
-      <tr><td>Z4 threshold</td><td class="n">94–100%</td><td class="n">91–105%</td><td>Hard, 20–60 min</td></tr>
-      <tr><td>Z5 VO2</td><td class="n">&gt; 100%</td><td class="n">&gt; 105%</td><td>Very hard, short intervals</td></tr>
-    </tbody>
-  </table></div>
-  <p class="lede">Tests: run LTHR = average HR of the last 20 min of a 30-min solo time trial. FTP = 95% of a 20-min all-out. Swim CSS = (T400 − T200) ÷ 2 per 100 m.</p>
-</section>
-
-<section data-view="race">
-  <div class="sec-head"><div class="eyebrow">Lessons from Vietnam</div><h2>Race days</h2></div>
-  <div class="cols">
-    <div><h3>70.3 Doha · Sat 20 Mar</h3><ul>
-      <li>Target sub-4:50: swim 0:34, bike 2:30, run 1:40, 6 min transitions.</li>
-      <li>Heat is your weak point. 5–8 heat sessions from about 6 March: trainer with the fan off, or a 40 °C bath after an easy run.</li>
-      <li>Measure your sweat rate this winter: weigh before and after a 1-hour fan-off ride.</li>
-      <li>Above 25 °C: power 5% lower, first 5 km of the run 10–15 s/km slower. Ice and water on every aid station.</li>
-      <li>Book Thu 18 to Mon 22 March off.</li>
-    </ul></div>
-    <div><h3>Hamburg · Sun 6 Jun</h3><ul>
-      <li>Pace the bike by power, capped at about 75% FTP. Giving 5 min on the bike to save 20+ on the run is the trade.</li>
-      <li>Fuel 70–90 g carbohydrate per hour on the bike, practised on every long ride from week 21.</li>
-      <li>First 10 km of the run at or slightly slower than goal pace.</li>
-      <li>Early June in Hamburg is usually 18–23 °C. Your kind of weather.</li>
-    </ul></div>
-  </div>
-</section>
-
 <div class="pager js-pager"></div>
-<footer>Plan version 5, 14 Oct 2026, with the week 3 tests moved after the early-November cold. Training data from TrainingPeaks (Feb 2025 – Oct 2026) and weekly logs.</footer>
 </div>
 
 <div class="wrap off" data-lang="ru" lang="ru">
 
-<header data-view="overview" class="hero">
+<header data-view="goal" class="hero">
   <div class="meta">
-    <div class="eyebrow">Арман Кала · план на 33 недели · v5</div>
-    <h1>Путь в <span>Гамбург</span> 2027</h1>
-    <p class="lede">От 11:54 во Вьетнаме к Ironman быстрее 10:30. До февраля упор на бег, потом подготовка ко всей гонке. Каждая тренировка вписана в 60-часовую рабочую неделю в Шымкенте.</p>
+    <div class="eyebrow">Арман Кала · IRONMAN Гамбург 2027</div>
+    <h1>Быстрее <span>10:30</span> в Гамбурге</h1>
+    <p class="lede">От 11:54 во Вьетнаме к результату быстрее 10:30 в Гамбурге. Большую часть из 87 минут даст бег.</p>
   </div>
   <div class="bib" aria-label="Обратный отсчёт до старта">
-    <div class="eyebrow" style="text-align:center">IRONMAN Гамбург · вс, 6 июня 2027</div>
+    <div class="eyebrow" style="text-align:center">Вс, 6 июня 2027</div>
     <div class="big num js-days" style="text-align:center">—</div>
     <div class="eyebrow" style="text-align:center">дней до старта</div>
-    <div class="row"><span>3,8 км плавание</span><span>180 км велосипед</span><span>42,2 км бег</span></div>
   </div>
 </header>
 
-<section data-view="overview">
-  <div class="sec-head"><div class="eyebrow">Целевые сплиты против Вьетнама (10 мая 2026)</div></div>
+<section data-view="goal">
+  <div class="sec-head"><div class="eyebrow">План гонки против Вьетнама</div></div>
   <div class="splits">
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--swim)"></i>Плавание</div><div class="t">1:12</div><div class="was">было 1:22 · ~1:54/100 м</div></div>
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--bike)"></i>Велосипед</div><div class="t">5:10</div><div class="was">было 5:31 · ~34,8 км/ч</div></div>
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--run)"></i>Бег</div><div class="t">3:58</div><div class="was">было 4:53 · ~5:39/км</div></div>
-    <div class="split"><div class="leg"><i class="dot" style="background:var(--other)"></i>T1 + T2</div><div class="t">0:07</div><div class="was">было ~0:08</div></div>
-    <div class="split total"><div class="leg">Финиш</div><div class="t">10:27</div><div class="was">было 11:54 · на 87 мин быстрее</div></div>
-  </div>
-  <p class="lede">Главный резерв времени в беге. Твой полумарафон за 1:38 обещает марафон на Ironman за 3:45–3:55. 4:53 во Вьетнаме объясняются жарой, темпом на велосипеде и питанием, а такой разрыв исправить легче всего.</p>
-</section>
-
-<section data-view="overview">
-  <div class="sec-head"><div class="eyebrow">Эта неделя</div><h2>Где ты сейчас</h2></div>
-  <div class="now">
-    <div class="wk"><small>НЕДЕЛЯ ПЛАНА</small><span class="js-nowWk">—</span><small style="margin-top:6px">из 33</small></div>
-    <div class="now-body">
-      <h3 class="js-nowPhase">—</h3>
-      <p class="js-nowFocus">—</p>
-      <div class="chips js-nowChips"></div>
-      <p class="lede js-nowNote"></p>
-    </div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--swim)"></i>Плавание 3,8 км</div><div class="t">1:12</div><div class="was">было 1:22</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--bike)"></i>Велосипед 180 км</div><div class="t">5:10</div><div class="was">было 5:31</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--run)"></i>Бег 42,2 км</div><div class="t">3:58</div><div class="was">было 4:53 · 5:39/км</div></div>
+    <div class="split"><div class="leg"><i class="dot" style="background:var(--other)"></i>T1 + T2</div><div class="t">0:07</div><div class="was">было 0:08</div></div>
+    <div class="split total"><div class="leg">Финиш</div><div class="t">10:27</div><div class="was">было 11:54</div></div>
   </div>
 </section>
 
-<section data-view="season">
-  <div class="sec-head"><div class="eyebrow">33 недели · плановые часы</div><h2>Сезон</h2>
-  <p class="lede">Часы тренировок в неделю по видам спорта. Зимой растёт беговой объём, после полумарафона главным становится велосипед. Нажми на неделю или наведи на неё, чтобы увидеть задачу.</p></div>
+<section data-view="goal">
+  <div class="sec-head"><div class="eyebrow">Три старта</div><h2>Путь к цели</h2></div>
+  <div class="cps">
+    <div class="cp"><div class="when">СЕРЕДИНА ФЕВРАЛЯ 2027</div><div class="what">Полумарафон</div><div class="target">Цель 1:30. Лучший результат 1:38.</div></div>
+    <div class="cp"><div class="when">СБ, 20 МАРТА 2027</div><div class="what">IRONMAN 70.3 Доха</div><div class="target">Цель быстрее 4:50. Контрольный старт.</div></div>
+    <div class="cp race"><div class="when">ВС, 6 ИЮНЯ 2027</div><div class="what">IRONMAN Гамбург</div><div class="target">Цель быстрее 10:30.</div></div>
+  </div>
+</section>
+
+<section data-view="goal">
+  <div class="sec-head"><div class="eyebrow">Что должно измениться</div><h2>От сегодня до старта</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Сейчас</th><th>Гамбург</th></tr></thead>
+    <tbody>
+      <tr><td>Вес</td><td class="n">72–73 кг</td><td class="n">65 кг</td></tr>
+      <tr><td>FTP</td><td class="n">~190 Вт (тест впереди)</td><td class="n">215–220 Вт</td></tr>
+      <tr><td>Лёгкий бег</td><td class="n">6:05/км при пульсе 140</td><td class="n">5:39/км после велосипеда</td></tr>
+      <tr><td>Тренировок в неделю</td><td class="n">5 ч</td><td class="n">до 15,5 ч</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section data-view="now">
+  <div class="sec-head"><div class="eyebrow">Обновлено 4 ноя 2026</div><h2>Текущая форма</h2>
+  <p class="lede">Неделя 3 из 33, беговой блок. Восстанавливаешься после простуды с 31 октября, поэтому тесты переносятся на следующую неделю.</p></div>
+  <div class="tiles">
+    <div class="tile"><div class="k">Вес</div><div class="v">72–73<small>кг</small></div><div class="sub">цель 65 кг</div></div>
+    <div class="tile"><div class="k">Лёгкий бег</div><div class="v">6:05<small>/км</small></div><div class="sub">при пульсе 140 (13 окт)</div></div>
+    <div class="tile"><div class="k">Темповые 5 км</div><div class="v">4:45<small>/км</small></div><div class="sub">около порога (30 окт)</div></div>
+    <div class="tile"><div class="k">Велосипед, 60 км холмы</div><div class="v">133<small>Вт</small></div><div class="sub">пульс 149, было 155</div></div>
+    <div class="tile"><div class="k">Прошлая неделя</div><div class="v">5,0<small>ч</small></div><div class="sub">29,7 км бега, план 30</div></div>
+    <div class="tile"><div class="k">Плавание</div><div class="v">—</div><div class="sub">бассейн с 16 ноя</div></div>
+  </div>
+</section>
+
+<section data-view="now">
+  <div class="sec-head"><div class="eyebrow">План и факт</div><h2>Последние три недели</h2></div>
+  <div class="tbl"><table class="wide">
+    <thead><tr><th>Неделя</th><th>План</th><th>Факт</th><th>Бег</th><th>Не сделано</th></tr></thead>
+    <tbody>
+      <tr><td class="n">12–18 окт</td><td class="n">—</td><td class="n">4,3 ч</td><td class="n">21 км</td><td>До начала плана</td></tr>
+      <tr><td class="n">19–25 окт</td><td class="n">5,3 ч</td><td class="n">4,1 ч</td><td class="n">38,5 км</td><td>Велосипед, силовая; весь бег слишком тяжёлый</td></tr>
+      <tr><td class="n">26 окт – 1 ноя</td><td class="n">5,3 ч</td><td class="n">5,0 ч</td><td class="n">29,7 км</td><td>Длительная, бег после велосипеда, силовая</td></tr>
+    </tbody>
+  </table></div>
+  <div class="notes">
+    <div class="note good"><div class="k">Хорошо</div><p>Выносливость возвращается. Тот же маршрут, та же мощность, пульс на 6 ударов ниже, чем две недели назад.</p></div>
+    <div class="note warn"><div class="k">Внимание</div><p>Три недели подряд тяжёлый бег вне плана. Интенсив только в запланированные дни, с 16 ноября.</p></div>
+    <div class="note warn"><div class="k">Не хватает</div><p>Субботней длительной. Это самая важная пробежка для полумарафона.</p></div>
+  </div>
+</section>
+
+<section data-view="plan">
+  <div class="sec-head"><div class="eyebrow js-weekLabel">—</div><h2>Эта неделя</h2>
+  <p class="lede js-weekFocus">—</p></div>
+  <div class="chips js-weekChips"></div>
+  <div class="days js-days7"></div>
+  <p class="lede js-weekNext"></p>
+</section>
+
+<section data-view="plan">
+  <div class="sec-head"><div class="eyebrow">33 недели · часов в неделю</div><h2>Все недели</h2>
+  <p class="lede">Нажми на неделю, чтобы увидеть её задачу.</p></div>
   <div class="chart-box">
-    <div class="chart-scroll"><svg class="js-chart" viewBox="0 0 900 330" role="img" aria-label="Диаграмма недельных часов по видам спорта за 33 недели"></svg></div>
+    <div class="chart-scroll"><svg class="js-chart" viewBox="0 0 900 330" role="img" aria-label="Недельные часы по видам спорта за 33 недели"></svg></div>
     <div class="legend">
       <span><i class="dot" style="background:var(--swim)"></i>Плавание</span>
       <span><i class="dot" style="background:var(--bike)"></i>Велосипед</span>
@@ -286,153 +227,7 @@
   </div>
 </section>
 
-<section data-view="season">
-  <div class="sec-head"><div class="eyebrow">Семь этапов</div><h2>Этапы</h2></div>
-  <div class="tbl"><table>
-    <thead><tr><th>Недели</th><th>Даты</th><th>Этап</th><th>Цель</th></tr></thead>
-    <tbody class="js-phaseBody">
-      <tr data-from="1" data-to="1"><td class="n">1</td><td class="n">19–25 окт</td><td>Возвращение</td><td>Лёгкое возвращение после пяти спокойных месяцев</td></tr>
-      <tr data-from="2" data-to="18"><td class="n">2–18</td><td class="n">26 окт – 21 фев</td><td>Беговой блок</td><td>Бег 30 → 58 км/нед, полумарафон в середине февраля; велосипед на станке для поддержания, плавание с середины ноября</td></tr>
-      <tr data-from="19" data-to="19"><td class="n">19</td><td class="n">22–28 фев</td><td>Переход к велосипеду и триатлону</td><td>Возвращаем велообъём, первые связки</td></tr>
-      <tr data-from="20" data-to="23"><td class="n">20–23</td><td class="n">1–28 мар</td><td>Блок Дохи</td><td>Заточка, подводка, старт 70.3 Доха, восстановление</td></tr>
-      <tr data-from="24" data-to="28"><td class="n">24–28</td><td class="n">29 мар – 2 мая</td><td>Развитие</td><td>Специфичные связки, бег в темпе IM после велосипеда, отработка питания</td></tr>
-      <tr data-from="29" data-to="31"><td class="n">29–31</td><td class="n">3–23 мая</td><td>Пик</td><td>Самые объёмные недели (15,5 ч), открытая вода, репетиция гонки</td></tr>
-      <tr data-from="32" data-to="33"><td class="n">32–33</td><td class="n">24 мая – 6 июня</td><td>Подводка</td><td>Сбросить усталость, сохранить остроту, стартовать</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section data-view="season">
-  <div class="sec-head"><div class="eyebrow">Если не попадаем, меняем цель, а не ломимся силой</div><h2>Контрольные точки</h2></div>
-  <div class="cps">
-    <div class="cp"><div class="when">НЕД 3–4 · НАЧАЛО НОЯБРЯ</div><div class="what">Первые тесты</div><div class="target">Беговой тест 30 мин + FTP-тест 20 мин. Задают зоны и точку отсчёта. Перенесены на 4-ю неделю из-за простуды.</div></div>
-    <div class="cp"><div class="when">НЕД 5 · 16 НОЯБРЯ</div><div class="what">Снова бассейн</div><div class="target">Тест CSS: 400 м и 200 м в полную силу.</div></div>
-    <div class="cp"><div class="when">НЕД 13 · СЕРЕДИНА ЯНВАРЯ</div><div class="what">Повторный тест</div><div class="target">Пороговый беговой темп быстрее ~4:50/км.</div></div>
-    <div class="cp race"><div class="when">НЕД 18 · СЕРЕДИНА ФЕВРАЛЯ</div><div class="what">Полумарафон</div><div class="target">Цель 1:30 (4:16/км). В графике, если быстрее 1:35. Лучший результат пока 1:38.</div></div>
-    <div class="cp race"><div class="when">НЕД 22 · СБ, 20 МАРТА</div><div class="what">IRONMAN 70.3 Доха</div><div class="target">Быстрее 4:50, бег быстрее 1:40.</div></div>
-    <div class="cp"><div class="when">НЕД 24 · КОНЕЦ МАРТА</div><div class="what">Повторный FTP-тест</div><div class="target">FTP на 8–10% выше первого теста, вес около 68 кг.</div></div>
-    <div class="cp"><div class="when">НЕД 27 · КОНЕЦ АПРЕЛЯ</div><div class="what">Длинная связка</div><div class="target">5:00 велосипед на мощности IM + 50 мин бега по 5:35/км.</div></div>
-    <div class="cp"><div class="when">НЕД 30 · СЕРЕДИНА МАЯ</div><div class="what">Длинная связка</div><div class="target">5:30 велосипед на мощности IM + 30 мин бега по 5:40/км под контролем.</div></div>
-    <div class="cp race"><div class="when">НЕД 33 · ВС, 6 ИЮНЯ</div><div class="what">IRONMAN Гамбург</div><div class="target">Быстрее 10:30.</div></div>
-  </div>
-</section>
-
-<section data-view="run">
-  <div class="sec-head"><div class="eyebrow">26 окт 2026 – середина фев 2027</div><h2>Беговой блок</h2>
-  <p class="lede">Твой выбор: до полумарафона главное бег. Объём растёт примерно на 10% в неделю, каждая четвёртая неделя облегчённая.</p></div>
-  <div class="tbl"><table>
-    <thead><tr><th>Недели</th><th>Даты</th><th>Бег км/нед</th><th>Длительная</th><th>Интенсивные</th></tr></thead>
-    <tbody>
-      <tr><td class="n">2–4</td><td class="n">26 окт – 15 ноя</td><td class="n">30 → 37</td><td class="n">1:10 → 1:20</td><td>Только ускорения и беговой тест</td></tr>
-      <tr><td class="n">5–7</td><td class="n">16 ноя – 6 дек</td><td class="n">41 → 47</td><td class="n">1:25 → 1:35</td><td>1 в неделю (порог)</td></tr>
-      <tr><td class="n">8</td><td class="n">7–13 дек</td><td class="n">35</td><td class="n">1:15</td><td><span class="tag">восстановление</span></td></tr>
-      <tr><td class="n">9–11</td><td class="n">14 дек – 3 янв</td><td class="n">48 → 51, 45</td><td class="n">до 1:45</td><td>2 в неделю (порог + темп ПМ)</td></tr>
-      <tr><td class="n">12</td><td class="n">4–10 янв</td><td class="n">38</td><td class="n">1:20</td><td><span class="tag">восстановление</span></td></tr>
-      <tr><td class="n">13–15</td><td class="n">11–31 янв</td><td class="n">52 → 58</td><td class="n">1:50 → 2:00</td><td>2 в неделю</td></tr>
-      <tr><td class="n">16</td><td class="n">1–7 фев</td><td class="n">44</td><td class="n">1:30</td><td><span class="tag">восстановление</span></td></tr>
-      <tr><td class="n">17–18</td><td class="n">8–21 фев</td><td class="n">52, неделя старта</td><td class="n">старт</td><td>Полумарафон</td></tr>
-    </tbody>
-  </table></div>
-  <div class="cols">
-    <div><h3>Правила</h3><ul>
-      <li>Около 80% бега остаётся лёгким: пульс не выше 145, пока тест не задаст зоны.</li>
-      <li>Тяжёлый бег только в указанные дни. До 16 ноября никаких интервалов, кроме теста.</li>
-      <li>Не пропускай субботнюю длительную. Это самая важная пробежка для полумарафона.</li>
-      <li>Силовая дважды в неделю по 20 мин: подъёмы на носки, приседания на одной ноге, выпады, ягодичный мост, кор.</li>
-      <li>Боль, которая меняет технику бега или усиливается наутро: 2–3 дня без бега, вместо него велосипед, и напиши мне.</li>
-    </ul></div>
-    <div><h3>Зима в Шымкенте</h3><ul>
-      <li>Все заезды на станке примерно до марта. Час на станке стоит около 1,2 часа на улице: вместо указанных 1:45 крути 1:30.</li>
-      <li>Заезды в зоне 2 (65–75% FTP), с 9-й недели добавляй отрезки по 5–10 мин на 80–85%.</li>
-      <li>Бегай на улице до −10 °C в слоях одежды. В гололёд и для интенсивных тренировок дорожка с уклоном 1%.</li>
-      <li>На станке мощный вентилятор и 750 мл–1 л воды в час.</li>
-    </ul></div>
-  </div>
-</section>
-
-<section data-view="week">
-  <div class="sec-head"><div class="eyebrow">Под график пн–пт 8:00–19:00, сб 8:00–13:00</div><h2>Типичная неделя</h2>
-  <p class="lede">Вариант бегового блока с 5-й недели, когда откроется бассейн. Длительная пробежка в субботу, длинный заезд в воскресенье, чтобы самый тяжёлый бег не совпадал с самым большим заездом.</p></div>
-  <div class="days">
-    <div class="day rest"><div class="d">Пн</div><div>Отдых</div></div>
-    <div class="day"><div class="d">Вт</div><div class="s run">5:30 интенсивный бег, 60–75 мин</div><div class="s">Силовая 20 мин</div></div>
-    <div class="day"><div class="d">Ср</div><div class="s swim">7:00 плавание, 45 мин</div><div class="s bike">По желанию станок 45–60 мин</div></div>
-    <div class="day"><div class="d">Чт</div><div class="s run">5:30 лёгкий бег</div></div>
-    <div class="day"><div class="d">Пт</div><div class="s run">6:00 лёгкий бег + ускорения</div><div class="s swim">7:00 плавание, 45 мин</div></div>
-    <div class="day"><div class="d">Сб</div><div class="s run">14:30 длительная, Z2</div><div class="s">Силовая 20 мин</div></div>
-    <div class="day"><div class="d">Вс</div><div class="s bike">Длинный заезд, зимой на станке</div><div class="s run">15–20 мин бега после велосипеда</div></div>
-  </div>
-  <div class="cols">
-    <div><h3>Сон и работа</h3><ul>
-      <li>С подъёмом в 5:00 ложись в 21:30–22:00. Спал меньше 6 часов, пропускай утреннюю тренировку.</li>
-      <li>Тяжёлый день на объекте тоже нагрузка. Следующее утро сделай лёгким или пропусти.</li>
-      <li>Вечером после 19:00 только короткие лёгкие тренировки, никаких интервалов.</li>
-    </ul></div>
-    <div><h3>Авральные недели</h3><ul>
-      <li>Оставь три тренировки: субботнюю длительную, воскресный заезд и одно плавание (около 6 часов).</li>
-      <li>Остальное отменяй без чувства вины и не навёрстывай пропущенное.</li>
-      <li>Если знаешь, что аврал впереди, скажи мне, и я поменяю его местами с восстановительной неделей.</li>
-    </ul></div>
-  </div>
-</section>
-
-<section data-view="body">
-  <div class="sec-head"><div class="eyebrow">Мощность и вес</div><h2>Мотор и вес</h2></div>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>Сейчас (окт 2026)</th><th>Доха · 20 мар</th><th>Гамбург · 6 июня</th></tr></thead>
-    <tbody>
-      <tr><td>FTP</td><td class="n">тест = точка отсчёта</td><td class="n">~205 Вт</td><td class="n">215–220 Вт</td></tr>
-      <tr><td>Мощность на гонке</td><td class="n">—</td><td class="n">80–83% FTP</td><td class="n">155–160 Вт (70–75%)</td></tr>
-      <tr><td>Вес</td><td class="n">72–73 кг</td><td class="n">~68 кг</td><td class="n">65 кг</td></tr>
-    </tbody>
-  </table></div>
-  <div class="cols">
-    <div><p>У тебя отличная аэропосадка (CdA около 0,23 м²: 33 км/ч на 128 Вт во Вьетнаме), поэтому работа на велосипеде сводится к росту FTP. Минус 5 кг дают примерно 15–20 минут на марафоне при той же форме.</p></div>
-    <div><ul>
-      <li>Худей на 0,25–0,5 кг в неделю, дефицит только в дни отдыха и лёгких тренировок.</li>
-      <li>Вокруг длинных и тяжёлых тренировок ешь полноценно. Белок 120–140 г в день.</li>
-      <li>Первым делом убери калорийные напитки и поздние перекусы.</li>
-      <li>За три недели до Гамбурга прекрати дефицит. Сильный при 66 кг лучше уставшего при 65.</li>
-    </ul></div>
-  </div>
-</section>
-
-<section data-view="body">
-  <div class="sec-head"><div class="eyebrow">Задаются по тестам</div><h2>Зоны</h2></div>
-  <div class="tbl"><table>
-    <thead><tr><th>Зона</th><th>Пульс (% ЛТЧСС)</th><th>Мощность (% FTP)</th><th>Ощущения</th></tr></thead>
-    <tbody>
-      <tr><td>Z1 восстановление</td><td class="n">&lt; 81%</td><td class="n">&lt; 55%</td><td>Очень легко</td></tr>
-      <tr><td>Z2 аэробная</td><td class="n">81–89%</td><td class="n">56–75%</td><td>Говоришь полными фразами</td></tr>
-      <tr><td>Z3 темп / усилие IM</td><td class="n">90–93%</td><td class="n">76–90%</td><td>По несколько слов</td></tr>
-      <tr><td>Z4 порог</td><td class="n">94–100%</td><td class="n">91–105%</td><td>Тяжело, 20–60 мин</td></tr>
-      <tr><td>Z5 МПК</td><td class="n">&gt; 100%</td><td class="n">&gt; 105%</td><td>Очень тяжело, короткие интервалы</td></tr>
-    </tbody>
-  </table></div>
-  <p class="lede">Тесты: беговой ЛТЧСС = средний пульс последних 20 мин 30-минутной прикидки в одиночку. FTP = 95% мощности 20 мин в полную силу. CSS в плавании = (T400 − T200) ÷ 2 на 100 м.</p>
-</section>
-
-<section data-view="race">
-  <div class="sec-head"><div class="eyebrow">Уроки Вьетнама</div><h2>Дни гонок</h2></div>
-  <div class="cols">
-    <div><h3>70.3 Доха · сб, 20 мар</h3><ul>
-      <li>Цель быстрее 4:50: плавание 0:34, велосипед 2:30, бег 1:40, транзиты 6 мин.</li>
-      <li>Жара твоё слабое место. С 6 марта 5–8 тепловых сессий: станок без вентилятора или ванна 40 °C после лёгкого бега.</li>
-      <li>Измерь потоотделение этой зимой: взвесься до и после часового заезда без вентилятора.</li>
-      <li>Выше 25 °C: мощность на 5% ниже, первые 5 км бега на 10–15 с/км медленнее. Лёд и вода на каждом пункте питания.</li>
-      <li>Возьми выходные с четверга 18 по понедельник 22 марта.</li>
-    </ul></div>
-    <div><h3>Гамбург · вс, 6 июня</h3><ul>
-      <li>Держи темп на велосипеде по мощности, не выше ~75% FTP. Отдать 5 минут на велосипеде, чтобы выиграть 20+ на беге, и есть наш размен.</li>
-      <li>70–90 г углеводов в час на велосипеде, отрабатываем на каждом длинном заезде с 21-й недели.</li>
-      <li>Первые 10 км бега в целевом темпе или чуть медленнее.</li>
-      <li>В начале июня в Гамбурге обычно 18–23 °C. Твоя погода.</li>
-    </ul></div>
-  </div>
-</section>
-
 <div class="pager js-pager"></div>
-<footer>План, версия 5 от 14 окт 2026, тесты 3-й недели перенесены из-за простуды в начале ноября. Данные из TrainingPeaks (фев 2025 – окт 2026) и недельных отчётов.</footer>
 </div>
 
 <script src="js/data.js"></script>

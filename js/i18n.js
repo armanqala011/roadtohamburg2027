@@ -7,7 +7,9 @@ window.RTH_I18N={
     cold:"You caught a cold over 31 Oct – 1 Nov, so the tests move to week 4 or until you feel fully recovered.",
     bands:["Ret","Run block","","Doha","Build","Peak","Taper"],events:["Half","Doha 70.3","Hamburg"],now:"now",
     ariaWeek:function(w,h,f){return "Week "+w+", "+h+" hours. "+f;},
-    tabs:{overview:"Overview",season:"Season",run:"Run block",week:"Week",body:"Power & weight",race:"Race days"},
+    tabs:{goal:"Goal",now:"Current form",plan:"Weekly plan"},
+    dayNames:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],today:"today",planWeek:"Plan week",of:"of",nextWeek:"Next week",testsNote:"Tests moved here from week 3 after the cold.",
+    days:{rest:"Rest",easyRun:"5:30 easy run, 30–45 min",strength:"Strength, 20 min",strengthOrSpin:"Strength 20 min, or easy spin 45 min",longRun:"14:30 long run",easyRide:"Easy ride, indoors",offBike:"10 min easy run off the bike",runTest:"5:30 run test, 30 min",hillStrides:"5:30 easy run with hill strides",ftpTest:"20-min FTP test inside the ride",quality:"5:30 quality run, 60–75 min",swim45:"7:00 swim, 45 min",optTrainer:"Optional trainer, 45–60 min",easyStrides:"6:00 easy run + strides",longRide:"Long ride",offBike20:"15–20 min run off the bike",swimCss:"7:00 swim, CSS set",bikeInt:"5:30 bike intervals, 60–75 min",easyRun40:"6:00 easy run, 35–45 min",swim60:"7:00 swim, 60 min",brick:"Brick run off the bike",easyOnly:"Recovery week: keep every session easy."},
     prev:"← Previous",next:"Next →",nav:"Sections",title:"Road to Hamburg 2027",brand:"Road to Hamburg"},
   ru:{ph:{ret:"Возвращение",run:"Беговой блок",runr:"Беговой блок (восстановление)",runrace:"Беговой блок (старт)",trans:"Переход к триатлону",doha:"Блок Дохи",dohat:"Подводка к Дохе",dohar:"Старт в Дохе",rec:"Восстановление",build:"Развитие",buildr:"Развитие (восстановление)",peak:"Пик",taper:"Подводка"},
     months:["янв","фев","мар","апр","мая","июня","июля","авг","сен","окт","ноя","дек"],
@@ -16,6 +18,8 @@ window.RTH_I18N={
     cold:"Ты простудился 31 окт – 1 ноя, поэтому тесты переносятся на 4-ю неделю или до полного восстановления.",
     bands:["Возвр","Беговой блок","","Доха","Развитие","Пик","Подв"],events:["ПМ","Доха 70.3","Гамбург"],now:"сейчас",
     ariaWeek:function(w,h,f){return "Неделя "+w+", "+h+" ч. "+f;},
-    tabs:{overview:"Обзор",season:"Сезон",run:"Беговой блок",week:"Неделя",body:"Мощность и вес",race:"Гонки"},
+    tabs:{goal:"Цель",now:"Текущая форма",plan:"План недели"},
+    dayNames:["Пн","Вт","Ср","Чт","Пт","Сб","Вс"],today:"сегодня",planWeek:"Неделя плана",of:"из",nextWeek:"Следующая неделя",testsNote:"Тесты перенесены сюда с 3-й недели из-за простуды.",
+    days:{rest:"Отдых",easyRun:"5:30 лёгкий бег, 30–45 мин",strength:"Силовая, 20 мин",strengthOrSpin:"Силовая 20 мин или лёгкий станок 45 мин",longRun:"14:30 длительная",easyRide:"Лёгкий заезд на станке",offBike:"10 мин лёгкого бега после велосипеда",runTest:"5:30 беговой тест, 30 мин",hillStrides:"5:30 лёгкий бег с ускорениями в горку",ftpTest:"FTP-тест 20 мин внутри заезда",quality:"5:30 интенсивный бег, 60–75 мин",swim45:"7:00 плавание, 45 мин",optTrainer:"По желанию станок, 45–60 мин",easyStrides:"6:00 лёгкий бег + ускорения",longRide:"Длинный заезд",offBike20:"15–20 мин бега после велосипеда",swimCss:"7:00 плавание, серия CSS",bikeInt:"5:30 вело-интервалы, 60–75 мин",easyRun40:"6:00 лёгкий бег, 35–45 мин",swim60:"7:00 плавание, 60 мин",brick:"Бег после велосипеда (связка)",easyOnly:"Восстановительная неделя: все тренировки легко."},
     prev:"← Назад",next:"Далее →",nav:"Разделы",title:"Путь в Гамбург 2027",brand:"Путь в Гамбург"}
 };

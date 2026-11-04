@@ -157,3 +157,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .topline{display:flex;align-items:center;justify-content:space-between;gap:12px}
 @media (min-width:761px){.topline{display:contents}.langs{order:3}}
 @media (max-width:760px){.topline{padding-top:8px}.tabs .brand{padding-top:0}}
+
+/* Current form */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.tile .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tile .v{font-family:var(--display);font-size:2.6rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.tile .v small{font-family:var(--body);font-size:1rem;font-weight:400;color:var(--muted);margin-left:3px}
+.tile .sub{font-size:.88rem;color:var(--muted)}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.note{border-top:3px solid var(--other);padding-top:10px;display:flex;flex-direction:column;gap:4px}
+.note .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.note.good{border-color:var(--ok)}.note.good .k{color:var(--ok)}
+.note.warn{border-color:var(--bike)}.note.warn .k{color:var(--bike)}
+
+/* This week */
+.day.today{border-color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.day .d{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.todaytag{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;font-weight:400;color:var(--accent);text-transform:uppercase}
+@media (max-width:760px){.tiles{grid-template-columns:1fr 1fr}.notes{grid-template-columns:1fr}}
+table.wide{min-width:560px}
